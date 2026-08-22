@@ -1,21 +1,11 @@
-# JBE Academy V1.1
+# JBE Academy V1.2
 
-Updated static website for JBE Academy.
+Changes in this version:
+- Correct JBE Academy logo order in RTL mode
+- Teacher image area improved
+- Fallback changed to `Mr. Jebali`
+- Teacher name changed to `Mr. Mohammad Jebali`
+- Improved teacher image sizing and positioning
 
-## New in V1.1
-- Stronger hero section with teacher image
-- Clear CTA buttons on each course
-- Floating WhatsApp button
-- Payment section for InstaPay / Vodafone Cash
-- YouTube-ready section
-- Improved mobile layout
-- WhatsApp registration flow ready for activation
-
-## Before launch
-Open `script.js` and update:
-- `whatsappNumber`
-- `instaPayText`
-- `vodafoneCashText`
-- `youtubeChannelUrl`
-
-Then commit the updated files to GitHub. Cloudflare Pages should redeploy automatically.
+Required asset:
+- `assets/teacher.png`
