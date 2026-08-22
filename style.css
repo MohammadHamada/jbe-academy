@@ -605,3 +605,20 @@ footer p{
   .teacher-fallback{height:380px}
   .whatsapp-float{left:12px;bottom:12px}
 }
+
+
+/* V1.3 fixes */
+.teacher-caption{
+  direction:ltr;
+  text-align:left;
+}
+.teacher-caption strong,
+.teacher-caption span{
+  direction:ltr;
+  text-align:left;
+}
+.teacher-fallback{
+  direction:ltr;
+  text-align:center;
+  text-transform:none;
+}

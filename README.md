@@ -1,11 +1,14 @@
-# JBE Academy V1.2
+# JBE Academy V1.3
 
-Changes in this version:
-- Correct JBE Academy logo order in RTL mode
-- Teacher image area improved
-- Fallback changed to `Mr. Jebali`
-- Teacher name changed to `Mr. Mohammad Jebali`
-- Improved teacher image sizing and positioning
+Fixes:
+- Teacher image moved to repository root as `teacher.png` to avoid GitHub folder-upload issues.
+- Teacher image path updated to `teacher.png`.
+- English teacher caption fixed to LTR direction.
+- `Mr. Jebali` and `Mr. Mohammad Jebali` now render in English direction.
 
-Required asset:
-- `assets/teacher.png`
+Upload these 5 files directly to the repository root:
+- index.html
+- style.css
+- script.js
+- README.md
+- teacher.png
