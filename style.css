@@ -688,3 +688,52 @@ footer p{
     margin-top:10px;
   }
 }
+
+
+/* V1.5 WhatsApp fixes */
+.whatsapp-contact-card{
+  margin-top:22px;
+  background:#f7fbf8;
+  border:1px solid #dcefe3;
+  border-radius:22px;
+  padding:22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.whatsapp-contact-text h3{
+  margin:6px 0;
+  font-size:24px;
+}
+.whatsapp-contact-text p{
+  color:var(--muted);
+  margin:4px 0 12px;
+}
+.whatsapp-direct-btn{
+  display:inline-flex;
+  background:var(--green);
+  color:#fff;
+  padding:11px 16px;
+  border-radius:11px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+.whatsapp-qr{
+  width:150px;
+  height:150px;
+  object-fit:cover;
+  object-position:center;
+  border-radius:14px;
+  border:6px solid #fff;
+  box-shadow:0 8px 24px rgba(11,39,72,.12);
+}
+@media(max-width:700px){
+  .whatsapp-contact-card{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .whatsapp-contact-card .qr-wrap{
+    align-items:center;
+  }
+}
