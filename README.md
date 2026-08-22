@@ -1,12 +1,21 @@
-# JBE Academy V1
+# JBE Academy V1.1
 
-Initial static website for JBE Academy.
+Updated static website for JBE Academy.
 
-Current focus:
-- Grade 9 Math
-- Grade 10 Math
-- Grade 11 Math
-- Business Management
-- Economics Grade 12 — Coming Soon
+## New in V1.1
+- Stronger hero section with teacher image
+- Clear CTA buttons on each course
+- Floating WhatsApp button
+- Payment section for InstaPay / Vodafone Cash
+- YouTube-ready section
+- Improved mobile layout
+- WhatsApp registration flow ready for activation
 
-Upload the files in this folder directly to the root of the GitHub repository.
+## Before launch
+Open `script.js` and update:
+- `whatsappNumber`
+- `instaPayText`
+- `vodafoneCashText`
+- `youtubeChannelUrl`
+
+Then commit the updated files to GitHub. Cloudflare Pages should redeploy automatically.
