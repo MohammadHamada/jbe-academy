@@ -1,14 +1,18 @@
-# JBE Academy V1.3
+# JBE Academy V1.4
 
-Fixes:
-- Teacher image moved to repository root as `teacher.png` to avoid GitHub folder-upload issues.
-- Teacher image path updated to `teacher.png`.
-- English teacher caption fixed to LTR direction.
-- `Mr. Jebali` and `Mr. Mohammad Jebali` now render in English direction.
+New in V1.4:
+- WhatsApp activated: 00201069338883
+- Vodafone Cash activated: 00201069338883
+- InstaPay direct-payment link added
+- InstaPay handle added: mohammadalgebaly@instapay
+- QR code generated for InstaPay
+- Payment proof button opens WhatsApp
+- Existing course and teacher sections preserved
 
-Upload these 5 files directly to the repository root:
+Files to upload to GitHub root:
 - index.html
 - style.css
 - script.js
 - README.md
 - teacher.png
+- instapay-qr.png

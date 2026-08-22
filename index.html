@@ -220,20 +220,32 @@
     </div>
   </section>
 
+  
   <section class="section payment-section" id="payment">
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">PAYMENT</span>
         <h2>الدفع داخل مصر</h2>
-        <p>الدفع يتم حاليًا يدويًا ثم مراجعة إثبات التحويل وتأكيد الاشتراك.</p>
+        <p>اختر وسيلة الدفع المناسبة، ثم أرسل إثبات التحويل عبر WhatsApp لتأكيد الاشتراك.</p>
       </div>
 
       <div class="payment-grid">
-        <div class="payment-card">
-          <span class="payment-icon">IP</span>
-          <div>
-            <strong>InstaPay</strong>
-            <p id="instapayText">سيتم إضافة رابط InstaPay هنا</p>
+        <div class="payment-card payment-card-instapay">
+          <div class="payment-main">
+            <span class="payment-icon">IP</span>
+            <div>
+              <strong>InstaPay</strong>
+              <p>الحساب: <b>mohammadalgebaly@instapay</b></p>
+              <p>رقم الهاتف: <b>00201069338883</b></p>
+              <a class="pay-now-btn" href="https://ipn.eg/S/mohammadalgebaly/instapay/0QFtEN" target="_blank" rel="noopener">
+                ادفع عبر InstaPay
+              </a>
+            </div>
+          </div>
+
+          <div class="qr-wrap">
+            <img src="instapay-qr.png" alt="InstaPay QR Code" class="qr-code" />
+            <span>امسح الـ QR بالموبايل</span>
           </div>
         </div>
 
@@ -241,7 +253,11 @@
           <span class="payment-icon">VC</span>
           <div>
             <strong>Vodafone Cash</strong>
-            <p id="vodafoneText">سيتم إضافة رقم المحفظة هنا</p>
+            <p>رقم المحفظة:</p>
+            <div class="payment-number">00201069338883</div>
+            <a class="proof-btn" href="https://wa.me/201069338883?text=" id="vodafoneProofBtn" target="_blank" rel="noopener">
+              أرسل إثبات الدفع
+            </a>
           </div>
         </div>
       </div>
@@ -255,7 +271,7 @@
     </div>
   </section>
 
-  <section class="section enroll" id="enroll">
+<section class="section enroll" id="enroll">
     <div class="container enroll-grid">
       <div>
         <span class="eyebrow">ENROLL</span>

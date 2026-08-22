@@ -622,3 +622,69 @@ footer p{
   text-align:center;
   text-transform:none;
 }
+
+
+/* V1.4 payment enhancements */
+.payment-card-instapay{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:22px;
+}
+.payment-main{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+}
+.pay-now-btn,
+.proof-btn{
+  display:inline-flex;
+  margin-top:10px;
+  background:var(--navy);
+  color:#fff;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:800;
+}
+.pay-now-btn:hover,
+.proof-btn:hover{
+  background:var(--navy2);
+}
+.payment-number{
+  direction:ltr;
+  text-align:left;
+  font-size:20px;
+  font-weight:900;
+  color:var(--navy);
+  margin-top:4px;
+}
+.qr-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  min-width:150px;
+}
+.qr-code{
+  width:130px;
+  height:130px;
+  object-fit:contain;
+  border:8px solid #fff;
+  border-radius:14px;
+  box-shadow:0 8px 24px rgba(11,39,72,.12);
+}
+.qr-wrap span{
+  font-size:12px;
+  color:var(--muted);
+  text-align:center;
+}
+
+@media(max-width:700px){
+  .payment-card-instapay{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .qr-wrap{
+    margin-top:10px;
+  }
+}

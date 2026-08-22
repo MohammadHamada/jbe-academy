@@ -2,9 +2,9 @@
 // Add your real details here later.
 
 const CONFIG = {
-  whatsappNumber: "",
-  instaPayText: "سيتم إضافة رابط InstaPay هنا",
-  vodafoneCashText: "سيتم إضافة رقم المحفظة هنا",
+  whatsappNumber: "201069338883",
+  instaPayText: "mohammadalgebaly@instapay",
+  vodafoneCashText: "00201069338883",
   youtubeChannelUrl: ""
 };
 
@@ -64,3 +64,11 @@ document.getElementById("enrollForm").addEventListener("submit", function(e){
 document.getElementById("langBtn").addEventListener("click", function(){
   alert("النسخة الإنجليزية الكاملة ستكون ضمن التحديث التالي.");
 });
+
+
+// V1.4 payment proof buttons
+const vodafoneProofBtn = document.getElementById("vodafoneProofBtn");
+if (vodafoneProofBtn) {
+  const proofMessage = "مرحبًا، تم الدفع عبر Vodafone Cash إلى الرقم 00201069338883. أريد إرسال إثبات الدفع وتأكيد الاشتراك في JBE Academy.";
+  vodafoneProofBtn.href = `https://wa.me/201069338883?text=${encodeURIComponent(proofMessage)}`;
+}
