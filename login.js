@@ -112,7 +112,7 @@ async function resolveDestination() {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  message.textContent = "Signing in...";
+  message.textContent = JBE_I18N.t("Signing in...");
   message.className = "status-message";
 
   const email = document.getElementById("email").value.trim();
@@ -130,7 +130,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   try {
-    message.textContent = "Signed in. Opening your workspace...";
+    message.textContent = (JBE_I18N.getLanguage()==="ar" ? "تم تسجيل الدخول. جارٍ فتح مساحة العمل..." : "Signed in. Opening your workspace...");
 
     const destination = await resolveDestination();
 
@@ -138,7 +138,7 @@ form.addEventListener("submit", async (e) => {
       await client.auth.signOut();
 
       message.textContent =
-        "This login is valid, but it is not linked to a JBE Academy role yet.";
+        (JBE_I18N.getLanguage()==="ar" ? "بيانات الدخول صحيحة، لكن الحساب غير مرتبط بدور داخل JBE Academy حتى الآن." : "This login is valid, but it is not linked to a JBE Academy role yet.");
 
       message.className = "status-message error";
       return;
@@ -157,7 +157,7 @@ form.addEventListener("submit", async (e) => {
   if (!session) return;
 
   try {
-    message.textContent = "Active session found. Opening your workspace...";
+    message.textContent = (JBE_I18N.getLanguage()==="ar" ? "تم العثور على جلسة نشطة. جارٍ فتح مساحة العمل..." : "Active session found. Opening your workspace...");
 
     const destination = await resolveDestination();
 

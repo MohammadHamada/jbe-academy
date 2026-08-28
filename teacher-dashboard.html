@@ -1,5 +1,6 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Teacher Workspace | JBE Academy</title><link rel="stylesheet" href="portal.css"></head>
-<body><header class="portal-top"><a class="brand" href="index.html">JBE <b>Academy</b></a><button onclick="JBE.logout()">Sign out</button></header>
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Teacher Workspace | JBE Academy</title><link href="portal.css" rel="stylesheet"/><link href="bilingual.css?v=241" rel="stylesheet"/></head>
+<body><header class="portal-top"><a class="brand" href="index.html">JBE <b>Academy</b></a><button onclick="JBE.logout()">Sign out</button><button class="jbe-language-switch" data-lang-switch="" type="button">English</button></header>
 <main class="wrap"><section class="hero-card"><span class="eyebrow">TEACHER WORKSPACE</span><h1 id="hello">Teacher Workspace</h1><p>Focus only on teaching: sessions, attendance, activities, skills and reports.</p></section>
 <div class="grid">
 <section class="panel"><h2>Today</h2><p class="muted">Upcoming sessions, attendance and follow-up will appear here.</p><a class="btn" href="admin-dashboard.html">Student Directory</a></section>
@@ -8,5 +9,5 @@
 <section class="panel"><h2>Reports</h2><p>Skills • Goals • Parent reports</p></section>
 <section class="panel wide"><h2>Design principle</h2><p class="muted">Financial administration, other teachers' data and platform-wide settings are intentionally hidden from the teacher workspace.</p></section>
 </div><p id="msg"></p></main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js?v=231"></script><script src="portal.js?v=231"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="i18n.js?v=241"></script><script src="supabase-config.js?v=241"></script><script src="portal.js?v=241"></script>
 <script>JBE.staff().then(s=>{if(!s||!["teacher","admin","super_admin"].includes(s.role)){document.getElementById("msg").textContent="Not authorized.";return;}document.getElementById("hello").textContent=`Welcome, ${s.full_name}`;});</script></body></html>

@@ -1,70 +1,49 @@
-<!doctype html>
-<html lang="en" dir="ltr">
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Portal Login | JBE Academy</title>
-  <link rel="stylesheet" href="dashboard.css">
-</head>
-<body class="auth-page">
-  <main class="auth-shell">
-
-    <section class="auth-brand">
-      <div class="brand-lockup">
-        <span>JBE</span><b>Academy</b>
-      </div>
-
-      <h1>JBE Academy Portal</h1>
-
-      <p>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Portal Login | JBE Academy</title>
+<link href="dashboard.css" rel="stylesheet"/>
+<link href="bilingual.css?v=241" rel="stylesheet"/></head>
+<body class="auth-page"><div style="padding:10px 5%;background:#fff;text-align:end"><button class="jbe-language-switch" data-lang-switch="" type="button">English</button></div>
+<main class="auth-shell">
+<section class="auth-brand">
+<div class="brand-lockup">
+<span>JBE</span><b>Academy</b>
+</div>
+<h1>JBE Academy Portal</h1>
+<p>
         One secure login for Admin, Teachers, Admissions,
         Students and Parents.
       </p>
-    </section>
-
-    <section class="auth-card">
-      <h2>Sign in</h2>
-
-      <p class="muted">
+</section>
+<section class="auth-card">
+<h2>Sign in</h2>
+<p class="muted">
         Use your JBE Academy email and password.
         The system will automatically open the correct workspace for your account.
       </p>
-
-      <form id="loginForm">
-        <label>
+<form id="loginForm">
+<label>
           Email
-          <input
-            id="email"
-            type="email"
-            required
-            autocomplete="email"
-          >
-        </label>
-
-        <label>
+          <input autocomplete="email" id="email" required="" type="email"/>
+</label>
+<label>
           Password
-          <input
-            id="password"
-            type="password"
-            required
-            autocomplete="current-password"
-          >
-        </label>
-
-        <button type="submit">Sign in</button>
-
-        <p id="loginMessage" class="status-message"></p>
-      </form>
-
-      <a class="back-link" href="index.html">
+          <input autocomplete="current-password" id="password" required="" type="password"/>
+</label>
+<button type="submit">Sign in</button>
+<p class="status-message" id="loginMessage"></p>
+</form>
+<a class="back-link" href="index.html">
         ← Back to JBE Academy
       </a>
-    </section>
-
-  </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase-config.js?v=231"></script>
-  <script src="login.js?v=231"></script>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="i18n.js?v=241"></script><script src="supabase-config.js?v=241"></script>
+<script src="login.js?v=241"></script>
 </body>
 </html>

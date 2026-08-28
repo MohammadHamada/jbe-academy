@@ -1,32 +1,29 @@
-<!doctype html>
-<html lang="en" dir="ltr">
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Portal | JBE Academy</title>
-  <link rel="stylesheet" href="portal.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Portal | JBE Academy</title>
+<link href="portal.css" rel="stylesheet"/>
+<link href="bilingual.css?v=241" rel="stylesheet"/></head>
 <body>
 <header class="portal-top">
-  <a class="brand" href="index.html">JBE <b>Academy</b></a>
-  <button onclick="JBE.logout()">Sign out</button>
-</header>
-
+<a class="brand" href="index.html">JBE <b>Academy</b></a>
+<button onclick="JBE.logout()">Sign out</button>
+<button class="jbe-language-switch" data-lang-switch="" type="button">English</button></header>
 <main class="wrap">
-  <section class="hero-card">
-    <span class="eyebrow">JBE ACADEMY</span>
-    <h1>Your workspace</h1>
-    <p id="who">Checking your account...</p>
-  </section>
-
-  <div class="cards" id="links"></div>
-  <p id="portalMessage"></p>
+<section class="hero-card">
+<span class="eyebrow">JBE ACADEMY</span>
+<h1>Your workspace</h1>
+<p id="who">Checking your account...</p>
+</section>
+<div class="cards" id="links"></div>
+<p id="portalMessage"></p>
 </main>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js?v=231"></script>
-<script src="portal.js?v=231"></script>
-
+<script src="i18n.js?v=241"></script><script src="supabase-config.js?v=241"></script>
+<script src="portal.js?v=241"></script>
 <script>
 (async () => {
   const role = await JBE.resolveRole();

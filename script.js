@@ -1,4 +1,4 @@
-// ===== JBE Academy V1.5 =====
+// ===== JBE Academy =====
 
 const CONFIG = {
   whatsappBusinessLink: "https://wa.me/message/CMZT2FQE754UC1",
@@ -12,7 +12,6 @@ const CONFIG = {
 const whatsappFloat = document.getElementById("whatsappFloat");
 const whatsappInline = document.getElementById("whatsappInline");
 const courseSelect = document.getElementById("courseSelect");
-const formNote = document.getElementById("formNote");
 
 if (whatsappFloat) whatsappFloat.href = CONFIG.whatsappBusinessLink;
 if (whatsappInline) whatsappInline.href = CONFIG.whatsappBusinessLink;
@@ -32,6 +31,7 @@ document.querySelectorAll("[data-youtube]").forEach(link => {
 });
 
 const enrollForm = document.getElementById("enrollForm");
+
 if (enrollForm) {
   enrollForm.addEventListener("submit", function(e) {
     e.preventDefault();
@@ -54,15 +54,10 @@ if (enrollForm) {
 }
 
 const vodafoneProofBtn = document.getElementById("vodafoneProofBtn");
+
 if (vodafoneProofBtn) {
   const proofMessage =
     "مرحبًا، تم الدفع عبر Vodafone Cash إلى الرقم 00201069338883. أريد إرسال إثبات الدفع وتأكيد الاشتراك في JBE Academy.";
-  vodafoneProofBtn.href = whatsappPrefilledLink(proofMessage);
-}
 
-const langBtn = document.getElementById("langBtn");
-if (langBtn) {
-  langBtn.addEventListener("click", function() {
-    alert("النسخة الإنجليزية الكاملة ستكون ضمن التحديث التالي.");
-  });
+  vodafoneProofBtn.href = whatsappPrefilledLink(proofMessage);
 }

@@ -1,32 +1,33 @@
-<!doctype html>
-<html lang="en" dir="ltr">
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Teacher Profile | JBE Academy</title>
-<link rel="stylesheet" href="portal.css">
-</head>
+<link href="portal.css" rel="stylesheet"/>
+<link href="bilingual.css?v=241" rel="stylesheet"/></head>
 <body>
 <header class="portal-top">
-  <a class="brand" href="index.html">JBE <b>Academy</b></a>
-  <div class="actions"><a class="btn light" href="teachers.html">All Teachers</a><a class="btn gold" href="register.html">Register</a></div>
+<a class="brand" href="index.html">JBE <b>Academy</b></a>
+<div class="actions"><a class="btn light" href="teachers.html">All Teachers</a><a class="btn gold" href="register.html">Register</a><button class="jbe-language-switch" data-lang-switch="" type="button">English</button></div>
 </header>
 <main class="wrap">
-  <section class="hero-card" id="profile"><h1>Loading...</h1></section>
-  <section class="panel">
-    <span class="eyebrow">TEACHING SCOPE</span>
-    <h2>Education systems, grades & subjects</h2>
-    <div id="scopes" class="cards"></div>
-  </section>
-  <section class="panel">
-    <span class="eyebrow">AVAILABLE OPTIONS</span>
-    <h2>Courses & tutoring options</h2>
-    <div id="offers" class="cards"></div>
-  </section>
-  <p id="msg"></p>
+<section class="hero-card" id="profile"><h1>Loading...</h1></section>
+<section class="panel">
+<span class="eyebrow">TEACHING SCOPE</span>
+<h2>Education systems, grades &amp; subjects</h2>
+<div class="cards" id="scopes"></div>
+</section>
+<section class="panel">
+<span class="eyebrow">AVAILABLE OPTIONS</span>
+<h2>Courses &amp; tutoring options</h2>
+<div class="cards" id="offers"></div>
+</section>
+<p id="msg"></p>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js?v=231"></script>
-<script src="portal.js?v=231"></script>
+<script src="i18n.js?v=241"></script><script src="supabase-config.js?v=241"></script>
+<script src="portal.js?v=241"></script>
 <script>
 (async()=>{
   const slug=new URLSearchParams(location.search).get("slug");

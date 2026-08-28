@@ -1,0 +1,11 @@
+
+.jbe-language-switch{
+  appearance:none;border:1px solid rgba(15,39,71,.18);background:#fff;color:#0b2748;
+  border-radius:999px;padding:8px 12px;font:inherit;font-size:12px;font-weight:800;
+  cursor:pointer;white-space:nowrap
+}
+.jbe-language-switch:hover{border-color:#d7a83d}
+.jbe-rtl{direction:rtl}
+.jbe-rtl input,.jbe-rtl textarea,.jbe-rtl select{text-align:start}
+.jbe-rtl table th,.jbe-rtl table td{text-align:start}
+.jbe-rtl .brand,.jbe-rtl .brand-lockup,.jbe-rtl .brand-lockup *,.jbe-rtl .teacher-caption{direction:ltr}

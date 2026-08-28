@@ -1,30 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Register | JBE Academy</title>
-<link rel="stylesheet" href="portal.css">
-</head>
+<link href="portal.css" rel="stylesheet"/>
+<link href="bilingual.css?v=241" rel="stylesheet"/></head>
 <body>
-<header class="portal-top"><a class="brand" href="index.html">JBE <b>Academy</b></a><a class="btn light" href="index.html">Back to website</a></header>
+<header class="portal-top"><a class="brand" href="index.html">JBE <b>Academy</b></a><a class="btn light" href="index.html">Back to website</a><button class="jbe-language-switch" data-lang-switch="" type="button">English</button></header>
 <main class="wrap">
 <section class="hero-card"><span class="eyebrow">ONLINE REGISTRATION</span><h1>Register once. We continue from here.</h1><p>Your data goes directly to JBE Admissions. You will not need to repeat the same information with the administrator.</p></section>
 <section class="panel">
 <form id="registrationForm">
 <div class="form-grid">
-<label>Student name<input name="student_name" required></label>
-<label>Student name in English<input name="student_name_en"></label>
-<label>Student phone<input name="student_phone"></label>
-<label>Student email<input name="student_email" type="email"></label>
-<label>Guardian name<input name="guardian_name"></label>
-<label>Guardian phone<input name="guardian_phone"></label>
-<label>Guardian email<input name="guardian_email" type="email"></label>
+<label>Student name<input name="student_name" required=""/></label>
+<label>Student name in English<input name="student_name_en"/></label>
+<label>Student phone<input name="student_phone"/></label>
+<label>Student email<input name="student_email" type="email"/></label>
+<label>Guardian name<input name="guardian_name"/></label>
+<label>Guardian phone<input name="guardian_phone"/></label>
+<label>Guardian email<input name="guardian_email" type="email"/></label>
 <label>Relationship<select name="relationship"><option value="father">Father</option><option value="mother">Mother</option><option value="guardian">Guardian</option></select></label>
-<label>Education system<select id="system" required></select></label>
-<label>Curriculum<select id="curriculum" required></select></label>
+<label>Education system<select id="system" required=""></select></label>
+<label>Curriculum<select id="curriculum" required=""></select></label>
 <label>Stage<select id="stage"></select></label>
-<label>Grade<select id="grade" required></select></label>
-<label>Subject<select id="subject" required></select></label>
+<label>Grade<select id="grade" required=""></select></label>
+<label>Subject<select id="subject" required=""></select></label>
 <label>Preferred teacher<select id="teacher"><option value="">No preference</option></select></label>
 </div>
 <label>Anything we should know?<textarea name="notes"></textarea></label>
@@ -34,7 +35,7 @@
 </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js?v=231"></script>
-<script src="portal.js?v=231"></script>
-<script src="register.js"></script>
+<script src="i18n.js?v=241"></script><script src="supabase-config.js?v=241"></script>
+<script src="portal.js?v=241"></script>
+<script src="register.js?v=241"></script>
 </body></html>

@@ -1,0 +1,52 @@
+JBE ACADEMY V2.4.1 — BILINGUAL STABLE REVIEW
+================================================
+
+BASELINE
+V2.3.1 Auth Hotfix — the last confirmed working production baseline.
+
+WHAT V2.4.1 FIXES
+- Preserves the original rich homepage, current course content and Mr. Mohammad Jebali information.
+- Adds a central English / Arabic bilingual engine to every page.
+- Arabic uses RTL; English uses LTR.
+- Language choice persists after refresh.
+- Removes the old "English version coming in the next update" alert.
+- Adds a language switch to every HTML page.
+- Registration academic options use name_ar/name_en where Supabase provides both.
+- Student Dashboard uses Arabic/English curriculum, grade, course and skill names where available.
+- Common statuses and system messages are bilingual.
+- Teacher-written notes, goals, reports and course content are not blindly machine-translated.
+- Keeps the validated role-routing and Supabase Auth configuration from V2.3.1.
+- Normalizes critical browser cache versions to v=241.
+
+AUTOMATED STATIC AUDIT
+JavaScript files checked: 12
+HTML pages checked: 13
+JavaScript syntax errors: 0
+Broken local references: 0
+Pages missing i18n: 0
+Pages missing language switch: 0
+Malformed cache query strings: 0
+Production Supabase configuration placeholders: 0
+Browser service-role secret usage: 0
+Production Supabase URL: confirmed
+Production publishable key: confirmed
+Old language placeholder alert: removed
+
+DATABASE
+No SQL migration is required for V2.4.1.
+Do NOT rerun V2.1 or V2.3 SQL for this frontend release.
+
+QUALITY LIMIT
+This release passed static code and integration checks.
+A truthful software review cannot guarantee zero runtime defects until the deployed site
+is smoke-tested against the live Supabase project with the available user roles.
+
+LIVE ACCEPTANCE ORDER
+1. Homepage Arabic / English switch.
+2. Registration in both languages.
+3. Existing Admin login.
+4. Teacher Settings.
+5. Student Dashboard.
+6. Admissions.
+7. Parent / Sales when dedicated Auth accounts exist.
+8. Mobile RTL / LTR.

@@ -1,35 +1,32 @@
-<!doctype html>
-<html lang="en" dir="ltr">
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Teachers | JBE Academy</title>
-  <link rel="stylesheet" href="portal.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Teachers | JBE Academy</title>
+<link href="portal.css" rel="stylesheet"/>
+<link href="bilingual.css?v=241" rel="stylesheet"/></head>
 <body>
 <header class="portal-top">
-  <a class="brand" href="index.html">JBE <b>Academy</b></a>
-  <div class="actions">
-    <a class="btn light" href="register.html">Register</a>
-    <a class="btn" href="student-login.html">Portal Login</a>
-  </div>
+<a class="brand" href="index.html">JBE <b>Academy</b></a>
+<div class="actions">
+<a class="btn light" href="register.html">Register</a>
+<a class="btn" href="student-login.html">Portal Login</a>
+<button class="jbe-language-switch" data-lang-switch="" type="button">English</button></div>
 </header>
-
 <main class="wrap">
-  <section class="hero-card">
-    <span class="eyebrow">JBE TEACHERS</span>
-    <h1>Learn with the right teacher</h1>
-    <p>Verified teachers, clear teaching scopes and approved course options.</p>
-  </section>
-
-  <div id="teachers" class="cards"></div>
-  <p id="msg"></p>
+<section class="hero-card">
+<span class="eyebrow">JBE TEACHERS</span>
+<h1>Learn with the right teacher</h1>
+<p>Verified teachers, clear teaching scopes and approved course options.</p>
+</section>
+<div class="cards" id="teachers"></div>
+<p id="msg"></p>
 </main>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js?v=231"></script>
-<script src="portal.js?v=231"></script>
-
+<script src="i18n.js?v=241"></script><script src="supabase-config.js?v=241"></script>
+<script src="portal.js?v=241"></script>
 <script>
 (async () => {
   const { data, error } = await JBE.client.rpc("public_teacher_directory");
