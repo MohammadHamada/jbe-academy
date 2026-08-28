@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Student Dashboard | JBE Academy</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <header class="portal-header">
+    <a class="brand-lockup" href="index.html"><span>JBE</span><b>Academy</b></a>
+    <div class="portal-actions">
+      <span id="studentCode" class="student-code"></span>
+      <button id="logoutBtn" class="ghost-btn">Sign out</button>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="welcome-card">
+      <div>
+        <span class="eyebrow">STUDENT PORTAL</span>
+        <h1 id="studentName">Loading...</h1>
+        <p id="academicLine" class="muted">Loading your academic profile...</p>
+      </div>
+      <div class="overall-ring">
+        <span id="overallProgress">—</span>
+        <small>Overall progress</small>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card"><span>Attendance</span><strong id="attendanceStat">—</strong></article>
+      <article class="stat-card"><span>Assessment Avg.</span><strong id="assessmentStat">—</strong></article>
+      <article class="stat-card"><span>Homework</span><strong id="homeworkStat">—</strong></article>
+      <article class="stat-card"><span>Payment</span><strong id="paymentStat">—</strong></article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel"><div class="panel-head"><div><span class="eyebrow">MY COURSES</span><h2>Current courses</h2></div></div><div id="coursesList" class="stack-list"></div></article>
+      <article class="panel"><div class="panel-head"><div><span class="eyebrow">SKILLS</span><h2>Skill profile</h2></div></div><div id="skillsList" class="skills-list"></div></article>
+      <article class="panel"><div class="panel-head"><div><span class="eyebrow">GOALS</span><h2>Current learning goals</h2></div></div><div id="goalsList" class="stack-list"></div></article>
+      <article class="panel"><div class="panel-head"><div><span class="eyebrow">TEACHER</span><h2>Teacher feedback</h2></div></div><div id="teacherNotes" class="stack-list"></div></article>
+    </section>
+
+    <section class="panel report-panel">
+      <div class="panel-head">
+        <div><span class="eyebrow">PARENT REPORT</span><h2>Latest progress report</h2></div>
+        <span id="reportPeriod" class="pill">—</span>
+      </div>
+      <div class="report-grid">
+        <div><span>Strengths</span><p id="strengths">—</p></div>
+        <div><span>Areas to improve</span><p id="improvements">—</p></div>
+        <div class="recommendation"><span>Teacher recommendation</span><p id="recommendation">—</p></div>
+      </div>
+    </section>
+
+    <p id="dashboardError" class="dashboard-error"></p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="student-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Student Login | JBE Academy</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="auth-page">
+  <main class="auth-shell">
+    <section class="auth-brand">
+      <div class="brand-lockup"><span>JBE</span><b>Academy</b></div>
+      <h1>Student Portal</h1>
+      <p>Access your courses, progress, skills, reports and learning goals.</p>
+    </section>
+    <section class="auth-card">
+      <h2>Sign in</h2>
+      <p class="muted">Use the email and password assigned to your student account.</p>
+      <form id="loginForm">
+        <label>Email<input id="email" type="email" required autocomplete="email"></label>
+        <label>Password<input id="password" type="password" required autocomplete="current-password"></label>
+        <button type="submit">Sign in</button>
+        <p id="loginMessage" class="status-message"></p>
+      </form>
+      <a class="back-link" href="index.html">← Back to JBE Academy</a>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
