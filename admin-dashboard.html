@@ -1,18 +1,27 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Teacher Dashboard | JBE Academy</title>
-<link rel="stylesheet" href="admin.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Dashboard | JBE Academy</title>
+  <link rel="stylesheet" href="admin.css">
 </head>
 <body>
 <header class="topbar">
   <a class="brand" href="index.html"><span>JBE</span><b>Academy</b></a>
-  <div class="top-actions"><span id="staffName"></span><button id="logoutBtn">Sign out</button></div>
+  <div class="top-actions">
+    <span id="staffName"></span>
+    <button id="logoutBtn">Sign out</button>
+  </div>
 </header>
+
 <main class="shell">
   <section class="hero">
-    <div><span class="eyebrow">TEACHER / ADMIN</span><h1>JBE Academy Control Center</h1><p>Students, enrollments and academic records in one place.</p></div>
+    <div>
+      <span class="eyebrow">TEACHER / ADMIN</span>
+      <h1>JBE Academy Control Center</h1>
+      <p>Students, enrollments and academic records in one place.</p>
+    </div>
     <button class="primary" id="openStudentForm">+ Add Student</button>
   </section>
 
@@ -26,31 +35,53 @@
 
   <section class="panel">
     <div class="panel-head">
-      <div><span class="eyebrow">STUDENTS</span><h2>Student directory</h2></div>
+      <div>
+        <span class="eyebrow">STUDENTS</span>
+        <h2>Student directory</h2>
+      </div>
       <input id="studentSearch" placeholder="Search by name or code">
     </div>
+
     <div class="table-wrap">
-      <table><thead><tr><th>Code</th><th>Student</th><th>Curriculum</th><th>Grade</th><th>Courses</th><th>Payment</th></tr></thead>
-      <tbody id="studentsBody"></tbody></table>
+      <table>
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Student</th>
+            <th>Curriculum</th>
+            <th>Grade</th>
+            <th>Courses</th>
+            <th>Payment</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="studentsBody"></tbody>
+      </table>
     </div>
   </section>
 
   <section class="panel">
-    <span class="eyebrow">ROADMAP</span><h2>Next teacher tools</h2>
+    <span class="eyebrow">ACTIVE TOOLS</span>
+    <h2>Student management</h2>
     <div class="tool-grid">
       <div><strong>Attendance</strong><span>Record attendance</span></div>
-      <div><strong>Assessments</strong><span>Homework, quizzes and results</span></div>
       <div><strong>Skills</strong><span>Rate skills and recommendations</span></div>
+      <div><strong>Goals</strong><span>Create learning goals</span></div>
       <div><strong>Reports</strong><span>Publish parent reports</span></div>
-      <div><strong>Promotion</strong><span>Approve progression</span></div>
+      <div><strong>Payments</strong><span>Verify and activate courses</span></div>
     </div>
   </section>
+
   <p id="adminError" class="error"></p>
 </main>
 
 <div class="modal hidden" id="studentModal">
   <div class="modal-card">
-    <div class="modal-head"><div><span class="eyebrow">NEW STUDENT</span><h2>Create student profile</h2></div><button class="close" id="closeStudentForm">×</button></div>
+    <div class="modal-head">
+      <div><span class="eyebrow">NEW STUDENT</span><h2>Create student profile</h2></div>
+      <button class="close" id="closeStudentForm">×</button>
+    </div>
+
     <form id="studentForm">
       <div class="grid2">
         <label>Student name (Arabic)<input name="full_name" required></label>
@@ -58,11 +89,23 @@
         <label>Student phone<input name="phone"></label>
         <label>Guardian name<input name="guardian_name"></label>
         <label>Guardian phone<input name="guardian_phone"></label>
-        <label>Relationship<select name="relationship"><option value="father">Father</option><option value="mother">Mother</option><option value="guardian">Guardian</option></select></label>
+        <label>Relationship
+          <select name="relationship">
+            <option value="father">Father</option>
+            <option value="mother">Mother</option>
+            <option value="guardian">Guardian</option>
+          </select>
+        </label>
         <label>Curriculum<select id="curriculumSelect" name="curriculum_code" required></select></label>
         <label>Grade<select id="gradeSelect" name="grade_code" required></select></label>
       </div>
-      <label>Initial course<select id="courseSelect" name="course_slug"><option value="">No course yet</option></select></label>
+
+      <label>Initial course
+        <select id="courseSelect" name="course_slug">
+          <option value="">No course yet</option>
+        </select>
+      </label>
+
       <button class="primary submit" type="submit">Create Student</button>
       <p id="formMessage"></p>
     </form>
@@ -72,4 +115,5 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script src="admin.js"></script>
-</body></html>
+</body>
+</html>

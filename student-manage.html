@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Manage Student | JBE Academy</title>
+  <link rel="stylesheet" href="student-manage.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="admin-dashboard.html"><span>JBE</span><b>Academy</b></a>
+  <div class="top-actions">
+    <a href="admin-dashboard.html">← Admin Dashboard</a>
+    <button id="logoutBtn">Sign out</button>
+  </div>
+</header>
+
+<main class="shell">
+
+  <section class="student-hero">
+    <div>
+      <span class="eyebrow">STUDENT MANAGEMENT</span>
+      <h1 id="studentName">Loading...</h1>
+      <p id="studentAcademic">Loading academic profile...</p>
+      <span class="student-code" id="studentCode"></span>
+    </div>
+  </section>
+
+  <section class="summary-grid">
+    <article>
+      <span>Phone</span>
+      <strong id="studentPhone">—</strong>
+    </article>
+    <article>
+      <span>Guardian</span>
+      <strong id="guardianName">—</strong>
+      <small id="guardianPhone"></small>
+    </article>
+    <article>
+      <span>Status</span>
+      <strong id="studentStatus">—</strong>
+    </article>
+    <article>
+      <span>Current Grade</span>
+      <strong id="studentGrade">—</strong>
+    </article>
+  </section>
+
+  <section class="grid">
+
+    <article class="panel wide">
+      <div class="panel-head">
+        <div>
+          <span class="eyebrow">COURSES & PAYMENTS</span>
+          <h2>Enrollments</h2>
+        </div>
+      </div>
+      <div id="enrollmentsList"></div>
+    </article>
+
+    <article class="panel">
+      <span class="eyebrow">ATTENDANCE</span>
+      <h2>Record attendance</h2>
+
+      <form id="attendanceForm">
+        <label>Course<select id="attendanceCourse" required></select></label>
+        <label>Session title<input name="session_title" required placeholder="Session 1"></label>
+        <label>Date & time<input name="session_date" type="datetime-local" required></label>
+        <label>Status
+          <select name="status">
+            <option value="present">Present</option>
+            <option value="late">Late</option>
+            <option value="absent">Absent</option>
+            <option value="excused">Excused</option>
+          </select>
+        </label>
+        <label>Minutes attended<input name="minutes" type="number" value="90" min="0"></label>
+        <label>Note<textarea name="note"></textarea></label>
+        <button type="submit">Save Attendance</button>
+        <p id="attendanceMessage"></p>
+      </form>
+    </article>
+
+    <article class="panel">
+      <span class="eyebrow">SKILLS</span>
+      <h2>Add skill rating</h2>
+
+      <form id="skillForm">
+        <label>Course<select id="skillCourse" required></select></label>
+        <label>Skill<select id="skillSelect" required></select></label>
+        <label>Rating
+          <select name="rating">
+            <option value="1">1 - Beginning</option>
+            <option value="2">2 - Developing</option>
+            <option value="3">3 - Secure</option>
+            <option value="4">4 - Strong</option>
+            <option value="5">5 - Advanced</option>
+          </select>
+        </label>
+        <label>Evidence<textarea name="evidence"></textarea></label>
+        <label>Teacher note<textarea name="teacher_note"></textarea></label>
+        <label>Recommended action<textarea name="recommended_action"></textarea></label>
+        <button type="submit">Save Skill Rating</button>
+        <p id="skillMessage"></p>
+      </form>
+    </article>
+
+    <article class="panel">
+      <span class="eyebrow">LEARNING GOALS</span>
+      <h2>Add goal</h2>
+
+      <form id="goalForm">
+        <label>Course<select id="goalCourse"></select></label>
+        <label>Goal title<input name="title" required></label>
+        <label>Description<textarea name="description"></textarea></label>
+        <label>Target date<input name="target_date" type="date"></label>
+        <button type="submit">Add Goal</button>
+        <p id="goalMessage"></p>
+      </form>
+
+      <div class="history" id="goalsHistory"></div>
+    </article>
+
+    <article class="panel">
+      <span class="eyebrow">TEACHER NOTES</span>
+      <h2>Add note</h2>
+
+      <form id="noteForm">
+        <label>Course<select id="noteCourse"></select></label>
+        <label>Type
+          <select name="note_type">
+            <option value="academic">Academic</option>
+            <option value="strength">Strength</option>
+            <option value="concern">Concern</option>
+            <option value="attendance">Attendance</option>
+            <option value="parent_followup">Parent follow-up</option>
+            <option value="behavior">Behavior</option>
+            <option value="general">General</option>
+          </select>
+        </label>
+        <label>Note<textarea name="note" required></textarea></label>
+        <label class="check">
+          <input type="checkbox" name="parent_visible" checked>
+          Visible to student/parent
+        </label>
+        <button type="submit">Save Note</button>
+        <p id="noteMessage"></p>
+      </form>
+
+      <div class="history" id="notesHistory"></div>
+    </article>
+
+    <article class="panel wide">
+      <span class="eyebrow">PARENT REPORT</span>
+      <h2>Publish progress report</h2>
+
+      <form id="reportForm">
+        <div class="form-grid">
+          <label>Period<input name="period_name" required placeholder="September 2026"></label>
+          <label>Attendance %<input name="attendance" type="number" min="0" max="100" required></label>
+          <label>Homework %<input name="homework" type="number" min="0" max="100" required></label>
+          <label>Assessment Avg. %<input name="assessment" type="number" min="0" max="100" required></label>
+          <label>Overall Progress %<input name="overall" type="number" min="0" max="100" required></label>
+        </div>
+
+        <label>Strengths<textarea name="strengths"></textarea></label>
+        <label>Areas for improvement<textarea name="improvements"></textarea></label>
+        <label>Teacher recommendation<textarea name="recommendation"></textarea></label>
+
+        <button type="submit">Publish Report</button>
+        <p id="reportMessage"></p>
+      </form>
+
+      <div class="history" id="reportsHistory"></div>
+    </article>
+
+    <article class="panel wide">
+      <span class="eyebrow">ACADEMIC HISTORY</span>
+      <h2>Academic records</h2>
+      <div id="academicHistory"></div>
+    </article>
+
+  </section>
+
+  <p id="pageError" class="error"></p>
+</main>
+
+<div class="modal hidden" id="paymentModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2>Verify Payment & Activate Course</h2>
+      <button id="closePaymentModal">×</button>
+    </div>
+
+    <form id="paymentForm">
+      <input type="hidden" id="paymentEnrollmentId">
+
+      <label>Amount (EGP)
+        <input id="paymentAmount" type="number" min="0" step="0.01" required>
+      </label>
+
+      <label>Payment Method
+        <select id="paymentMethod">
+          <option value="instapay">InstaPay</option>
+          <option value="vodafone_cash">Vodafone Cash</option>
+          <option value="cash">Cash</option>
+          <option value="bank_transfer">Bank Transfer</option>
+          <option value="card">Card</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label>Transaction Reference
+        <input id="paymentReference">
+      </label>
+
+      <button type="submit">Verify & Activate</button>
+      <p id="paymentMessage"></p>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="student-manage.js"></script>
+</body>
+</html>

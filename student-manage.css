@@ -1,0 +1,130 @@
+:root{
+  --navy:#0b2748;
+  --navy2:#153f70;
+  --gold:#d7a83d;
+  --bg:#f4f7fb;
+  --text:#172033;
+  --muted:#6b7280;
+  --line:#e4e9f0;
+  --green:#18864b;
+  --red:#b42318;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Segoe UI",sans-serif}
+a{text-decoration:none;color:inherit}
+.topbar{height:72px;background:#fff;border-bottom:1px solid var(--line);padding:0 5%;display:flex;justify-content:space-between;align-items:center}
+.brand{display:inline-flex;gap:7px;direction:ltr;align-items:baseline;font-weight:900}
+.brand span{font-size:28px;color:var(--navy)}
+.brand b{color:var(--gold)}
+.top-actions{display:flex;gap:16px;align-items:center;font-size:13px}
+.top-actions button{background:#fff;border:1px solid var(--line);padding:9px 12px;border-radius:10px}
+.shell{width:min(1180px,92%);margin:30px auto 60px}
+.student-hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:24px;padding:28px}
+.student-hero h1{font-size:36px;margin:6px 0}
+.student-hero p{color:#dce6f1}
+.eyebrow{color:var(--gold);font-weight:900;letter-spacing:1.7px;font-size:11px}
+.student-code{display:inline-block;margin-top:8px;background:rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;font-size:12px}
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+.summary-grid article,.panel{background:#fff;border:1px solid var(--line);border-radius:18px}
+.summary-grid article{padding:17px}
+.summary-grid span,.summary-grid small{display:block;color:var(--muted);font-size:12px}
+.summary-grid strong{display:block;margin-top:5px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{padding:22px}
+.panel.wide{grid-column:1/-1}
+.panel h2{margin:5px 0 16px}
+.panel label{display:block;font-size:13px;font-weight:700;margin:12px 0}
+.panel input,.panel select,.panel textarea{
+  width:100%;
+  display:block;
+  margin-top:6px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px;
+  font:inherit;
+}
+.panel textarea{min-height:82px;resize:vertical}
+.panel button,.modal button{
+  border:0;
+  background:var(--navy);
+  color:#fff;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:800;
+  cursor:pointer;
+}
+.enrollment-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  margin-top:10px;
+}
+.enrollment-row strong,.enrollment-row span{display:block}
+.enrollment-row span{color:var(--muted);font-size:12px;margin-top:3px}
+.paid-pill{background:#e8f7ee!important;color:var(--green)!important;padding:7px 10px;border-radius:999px;font-weight:800}
+.activate-btn{background:var(--gold)!important;color:#10213a!important}
+.history{margin-top:20px;border-top:1px solid var(--line);padding-top:14px}
+.history h3{font-size:15px}
+.history-row{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px;
+  margin-top:8px;
+}
+.history-row strong,.history-row span{display:block}
+.history-row span{font-size:12px;color:var(--muted);margin-top:4px}
+.academic-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  padding:13px;
+  border-bottom:1px solid var(--line);
+}
+.academic-row strong,.academic-row span{display:block}
+.academic-row span{color:var(--muted);font-size:12px}
+.form-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.check{display:flex!important;gap:8px;align-items:center}
+.check input{width:auto!important;margin:0!important}
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(5,18,35,.58);
+  display:grid;
+  place-items:center;
+  padding:20px;
+  z-index:50;
+}
+.modal.hidden{display:none}
+.modal-card{
+  width:min(520px,100%);
+  background:#fff;
+  border-radius:20px;
+  padding:22px;
+}
+.modal-head{display:flex;justify-content:space-between;align-items:center}
+.modal-head button{background:transparent;color:var(--text);font-size:24px}
+.modal label{display:block;font-weight:700;font-size:13px;margin-top:12px}
+.modal input,.modal select{
+  width:100%;
+  margin-top:6px;
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+}
+.error{color:var(--red);font-weight:700}
+.muted{color:var(--muted)}
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .panel.wide{grid-column:auto}
+  .summary-grid{grid-template-columns:repeat(2,1fr)}
+  .form-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .summary-grid,.form-grid{grid-template-columns:1fr}
+  .enrollment-row{display:block}
+  .enrollment-row button{margin-top:10px}
+}
