@@ -1,4 +1,4 @@
-# JBE Academy — Master Platform V2.1 FIXED
+# JBE Academy — Master Platform V2.2 UNIVERSAL LOGIN
 
 This package consolidates the decisions made so far into one expandable architecture.
 
@@ -72,3 +72,19 @@ Cloudflare Pages should redeploy automatically after the commit.
 
 ## Fix included
 - Corrected PostgreSQL composite-row assignment in `admin_finalize_session_billing()` that caused `record variable cannot be part of multiple-item INTO list`.
+
+
+## V2.2 Universal Portal Login
+`student-login.html` is now the universal JBE Academy login page.
+
+Routing priority:
+1. Staff first (Admin / Super Admin / Teacher / Sales)
+2. Student
+3. Parent / Guardian
+
+This is important because the founding Admin account may also be linked to the demo student.
+Staff therefore always takes priority.
+
+Protected staff pages preserve the requested destination with `?next=...`.
+Example:
+`teacher-settings.html` -> login -> `teacher-settings.html`

@@ -58,3 +58,15 @@ JBE ACADEMY MASTER V2 — QA CHECKLIST
 [ ] Adding a teaching scope affects only his profile
 [ ] A second teacher can be created without inheriting Mr. Mohammad's scopes/courses/prices
 [ ] /teacher-profile.html?slug=mr-mohammad-jebali shows only his own public data
+
+
+9. Universal Login V2.2
+[ ] Open /teacher-settings.html while signed out
+[ ] Login page says JBE Academy Portal, not Student Portal
+[ ] Sign in with founding Admin account
+[ ] User returns to /teacher-settings.html
+[ ] Admin account is NOT redirected to student-dashboard.html
+[ ] Student-only account goes to /student-dashboard.html
+[ ] Parent-only account goes to /parent-dashboard.html
+[ ] Teacher-only account goes to /teacher-dashboard.html
+[ ] Sales-only account goes to /admissions-dashboard.html

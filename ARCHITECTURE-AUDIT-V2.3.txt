@@ -1,0 +1,95 @@
+JBE ACADEMY — V2.3 STABILIZATION REVIEW
+=========================================
+
+SCOPE REVIEWED
+- Original public website evolution V1 -> V1.5
+- Supabase base schema V1
+- Secure Student Portal V1.6
+- Admin Dashboard V1.7
+- Student Management V1.8
+- Master V2 / Teacher Ownership V2.1
+- Universal Login V2.2
+- Current multi-role/multi-teacher architecture
+
+ARCHITECTURE DECISION
+Public Website
+  -> Registration
+  -> Teachers Directory / Public Teacher Profile
+
+Private Portals
+  -> Admin / Super Admin
+  -> Admissions & Sales
+  -> Teacher Workspace
+  -> Student Portal
+  -> Parent Portal
+
+Academic hierarchy
+Education System
+  -> Curriculum
+  -> Stage
+  -> Grade
+  -> Subject
+  -> Course
+  -> Group
+  -> Session
+  -> Activity
+
+National structure
+- Primary: Grade 4-6
+- Preparatory: Grade 7-9
+- Secondary: Grade 10
+- Egyptian Baccalaureate: Grade 11-12
+
+TEACHER OWNERSHIP
+- Mr. Mohammad Jebali remains the founding teacher.
+- Existing launch courses are explicitly linked to his teacher profile.
+- Future teachers have independent profiles, teaching scopes, offerings and prices.
+- Adding a new platform Grade does not automatically assign it to any teacher.
+- Teacher private earning is separated from the public student price in V2.3.
+
+ISSUES FOUND AND FIXED IN V2.3
+1. Previous ZIP omitted style.css and script.js even though GitHub still had them.
+   V2.3 package is self-contained.
+2. Parent role detection in browser could be blocked by Guardian RLS.
+   Fixed with one SECURITY DEFINER role resolver RPC.
+3. Founding Admin may also be linked to demo student.
+   Role resolver always gives Staff priority.
+4. Public RLS on teacher tables could expose internal IDs/private teacher_price.
+   Public discovery now uses restricted RPCs only.
+5. admin_review_teacher_offering accepted public price but did not store it.
+   public_price is now stored and teacher_price remains private.
+6. Recurring weekly session generator could generate duplicate sessions.
+   V2.3 checks existing group/date before insert.
+7. Session billing could be finalized twice and create duplicate invoices.
+   V2.3 treats billing finalization as idempotent and records session_id on invoices.
+8. Receipt trigger used INSERT/UPDATE logic in one expression.
+   V2.3 separates the trigger paths explicitly.
+9. Universal login relied on direct table checks for every account type.
+   V2.3 uses resolve_my_portal() as the single source of truth.
+
+NOT YET FULLY AUTOMATIC — REQUIRES EXTERNAL SERVER/API
+- Automatic confirmation of InstaPay / Vodafone Cash transfer receipt.
+- Official WhatsApp Business API outbound messages.
+- Supabase Auth Admin user creation/invitations.
+- Payment gateway webhooks.
+These should be implemented later using Supabase Edge Functions or another secure backend.
+No service_role key should ever be put in browser JS.
+
+DEPLOYMENT RULE GOING FORWARD
+1. Do not add a new feature directly to production.
+2. Database migration first.
+3. Run read-only preflight.
+4. Upload web files.
+5. Test one account per role.
+6. Only then continue feature development.
+7. All future changes should be incremental migrations, not one repeatedly edited mega-SQL file.
+
+RECOMMENDED NEXT DEVELOPMENT ORDER AFTER STABILIZATION
+A. Finish Applications workflow and admin detail/review.
+B. Groups + recurring schedule UI.
+C. Billing plans / invoices / payment claim proof upload.
+D. Homework / lessons / quizzes.
+E. Parent account linking and parent portal.
+F. Assessment automation + skills.
+G. Promotion workflow.
+H. Secure integrations (WhatsApp / payment gateway / Auth invitations).
