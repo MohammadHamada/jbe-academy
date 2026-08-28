@@ -1,0 +1,9 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Teachers | JBE Academy</title><link rel="stylesheet" href="portal.css"></head>
+<body><header class="portal-top"><a class="brand" href="index.html">JBE <b>Academy</b></a><div class="actions"><a class="btn light" href="register.html">Register</a><a class="btn" href="student-login.html">Portal Login</a></div></header>
+<main class="wrap"><section class="hero-card"><span class="eyebrow">JBE TEACHERS</span><h1>Learn with the right teacher</h1><p>Verified teachers, clear subjects and transparent course options.</p></section><div id="teachers" class="cards"></div><p id="msg"></p></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="portal.js"></script>
+<script>
+(async()=>{const {data,error}=await JBE.client.from("teacher_profiles").select("id,slug,display_name,headline_en,bio_en,photo_url,rating_average").eq("is_public",true).eq("is_verified",true);
+if(error){document.getElementById("msg").textContent=error.message;return;}
+document.getElementById("teachers").innerHTML=(data||[]).map(t=>`<article class="card">${t.photo_url?`<img src="${t.photo_url}" alt="" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px">`:""}<h2>${t.display_name}</h2><p>${t.headline_en||""}</p><p class="muted">${t.bio_en||""}</p><a class="btn" href="teacher-profile.html?slug=${encodeURIComponent(t.slug)}">View Profile</a></article>`).join("");})();
+</script></body></html>

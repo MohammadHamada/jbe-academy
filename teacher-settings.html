@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Teaching Profile | JBE Academy</title>
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body>
+<header class="portal-top">
+  <a class="brand" href="index.html">JBE <b>Academy</b></a>
+  <div class="actions">
+    <a class="btn light" href="teacher-dashboard.html">Teacher Workspace</a>
+    <button onclick="JBE.logout()">Sign out</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero-card">
+    <span class="eyebrow">TEACHER PROFILE & OFFERINGS</span>
+    <h1 id="teacherName">Teaching Profile</h1>
+    <p>Select only the education systems, curricula, grades and subjects you teach. Your data stays separate from every other teacher.</p>
+  </section>
+
+  <div class="grid">
+    <section class="panel">
+      <span class="eyebrow">ACADEMIC SCOPE</span>
+      <h2>Add what you teach</h2>
+      <form id="scopeForm">
+        <label>Education System<select id="system" required></select></label>
+        <label>Curriculum<select id="curriculum" required></select></label>
+        <label>Stage<select id="stage"></select></label>
+        <label>Grade<select id="grade" required></select></label>
+        <label>Subject<select id="subject" required></select></label>
+        <label class="check"><input id="scopePublic" type="checkbox"> Show on my public profile</label>
+        <button class="gold" type="submit">Add Teaching Scope</button>
+        <p id="scopeMsg"></p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <span class="eyebrow">COURSE / PRICE PROPOSAL</span>
+      <h2>Create an offering</h2>
+      <form id="offeringForm">
+        <label>Teaching Scope<select id="scopeSelect" required></select></label>
+        <label>Study Mode
+          <select id="studyMode">
+            <option value="group">Group</option>
+            <option value="private">Private</option>
+            <option value="recorded">Recorded</option>
+            <option value="hybrid">Hybrid</option>
+          </select>
+        </label>
+        <label>Billing Type
+          <select id="billingType">
+            <option value="fixed_session">Fixed Session</option>
+            <option value="hourly">Hourly</option>
+            <option value="monthly">Monthly</option>
+            <option value="term">Term</option>
+            <option value="package">Package</option>
+          </select>
+        </label>
+        <label>Your Price<input id="teacherPrice" type="number" min="0" step="0.01" required></label>
+        <label>Currency<select id="currency"><option>EGP</option><option>SAR</option><option>AED</option><option>USD</option></select></label>
+        <label>Planned Duration (minutes)<input id="duration" type="number" min="15" step="5" value="60"></label>
+        <label>Capacity<input id="capacity" type="number" min="1" value="1"></label>
+        <button class="gold" type="submit">Submit for Approval</button>
+        <p id="offeringMsg"></p>
+      </form>
+    </section>
+
+    <section class="panel wide">
+      <span class="eyebrow">MY TEACHING SCOPE</span>
+      <h2>Systems, grades & subjects</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>System</th><th>Curriculum</th><th>Stage</th><th>Grade</th><th>Subject</th><th>Public</th><th></th></tr></thead>
+          <tbody id="scopeRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel wide">
+      <span class="eyebrow">MY OFFERINGS</span>
+      <h2>Pricing & approval status</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Curriculum</th><th>Grade</th><th>Subject</th><th>Mode</th><th>Billing</th><th>My Price</th><th>Status</th></tr></thead>
+          <tbody id="offeringRows"></tbody>
+        </table>
+      </div>
+      <p class="muted">Teacher prices are proposals. JBE Admin approves the offering before it becomes public. This protects both teacher freedom and platform quality.</p>
+    </section>
+  </div>
+  <p id="pageMsg"></p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="portal.js"></script>
+<script src="teacher-settings.js"></script>
+</body>
+</html>

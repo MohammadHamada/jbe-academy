@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teacher Profile | JBE Academy</title>
+<link rel="stylesheet" href="portal.css">
+</head>
+<body>
+<header class="portal-top">
+  <a class="brand" href="index.html">JBE <b>Academy</b></a>
+  <div class="actions"><a class="btn light" href="teachers.html">All Teachers</a><a class="btn gold" href="register.html">Register</a></div>
+</header>
+<main class="wrap">
+  <section class="hero-card" id="profile"><h1>Loading...</h1></section>
+  <section class="panel">
+    <span class="eyebrow">TEACHING SCOPE</span>
+    <h2>Education systems, grades & subjects</h2>
+    <div id="scopes" class="cards"></div>
+  </section>
+  <section class="panel">
+    <span class="eyebrow">AVAILABLE OPTIONS</span>
+    <h2>Courses & tutoring options</h2>
+    <div id="offers" class="cards"></div>
+  </section>
+  <p id="msg"></p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="portal.js"></script>
+<script>
+(async()=>{
+  const slug=new URLSearchParams(location.search).get("slug");
+  const {data,error}=await JBE.client.rpc("public_teacher_profile",{p_slug:slug});
+  if(error||!data?.profile){
+    document.getElementById("profile").innerHTML="<h1>Teacher not found</h1>";
+    if(error) document.getElementById("msg").textContent=error.message;
+    return;
+  }
+  const t=data.profile;
+  document.title=t.display_name+" | JBE Academy";
+  document.getElementById("profile").innerHTML=`
+    <span class="eyebrow">VERIFIED JBE TEACHER</span>
+    <h1>${t.display_name}</h1>
+    <p>${t.headline_en||""}</p>
+    <p>${t.bio_en||""}</p>`;
+
+  const scopes=data.teaching_scope||[];
+  document.getElementById("scopes").innerHTML=scopes.length?scopes.map(x=>`
+    <article class="card">
+      <h3>${x.subject}</h3>
+      <p>${x.education_system}</p>
+      <p>${x.curriculum} • ${x.stage||""} • ${x.grade}</p>
+    </article>`).join(""):`<p class="muted">Teaching scope will be published soon.</p>`;
+
+  const offers=data.offerings||[];
+  document.getElementById("offers").innerHTML=offers.length?offers.map(x=>`
+    <article class="card">
+      <h3>${x.subject}</h3>
+      <p>${x.curriculum} • ${x.grade}</p>
+      <p>${x.study_mode} • ${x.billing_type}</p>
+      <p><b>${x.price} ${x.currency}</b>${x.duration_minutes?` • ${x.duration_minutes} min`:""}</p>
+      <a class="btn gold" href="register.html">Register interest</a>
+    </article>`).join(""):`<p class="muted">No public offerings yet.</p>`;
+})();
+</script>
+</body></html>

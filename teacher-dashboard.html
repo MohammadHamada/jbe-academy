@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Teacher Workspace | JBE Academy</title><link rel="stylesheet" href="portal.css"></head>
+<body><header class="portal-top"><a class="brand" href="index.html">JBE <b>Academy</b></a><button onclick="JBE.logout()">Sign out</button></header>
+<main class="wrap"><section class="hero-card"><span class="eyebrow">TEACHER WORKSPACE</span><h1 id="hello">Teacher Workspace</h1><p>Focus only on teaching: sessions, attendance, activities, skills and reports.</p></section>
+<div class="grid">
+<section class="panel"><h2>Today</h2><p class="muted">Upcoming sessions, attendance and follow-up will appear here.</p><a class="btn" href="admin-dashboard.html">Student Directory</a></section>
+<section class="panel"><h2>Learning</h2><p>Lessons • Homework • Quizzes • Assessments</p></section>
+<section class="panel"><h2>My Teaching Profile</h2><p>Systems • Curricula • Grades • Subjects • Pricing</p><a class="btn gold" href="teacher-settings.html">Manage Teaching Profile</a></section>
+<section class="panel"><h2>Reports</h2><p>Skills • Goals • Parent reports</p></section>
+<section class="panel wide"><h2>Design principle</h2><p class="muted">Financial administration, other teachers' data and platform-wide settings are intentionally hidden from the teacher workspace.</p></section>
+</div><p id="msg"></p></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="portal.js"></script>
+<script>JBE.staff().then(s=>{if(!s||!["teacher","admin","super_admin"].includes(s.role)){document.getElementById("msg").textContent="Not authorized.";return;}document.getElementById("hello").textContent=`Welcome, ${s.full_name}`;});</script></body></html>

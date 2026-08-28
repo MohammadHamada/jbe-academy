@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Portal | JBE Academy</title><link rel="stylesheet" href="portal.css"></head>
+<body><header class="portal-top"><a class="brand" href="index.html">JBE <b>Academy</b></a><button onclick="JBE.logout()">Sign out</button></header>
+<main class="wrap"><section class="hero-card"><span class="eyebrow">JBE ACADEMY</span><h1>Your workspace</h1><p id="who">Checking your account...</p></section><div class="cards" id="links"></div></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="portal.js"></script>
+<script>
+(async()=>{const s=await JBE.requireSession();if(!s)return;const staff=await JBE.staff();const links=document.getElementById("links"),who=document.getElementById("who");
+if(staff){who.textContent=`${staff.full_name} • ${staff.role}`;let a=[];
+if(["super_admin","admin"].includes(staff.role))a.push(["Admin Dashboard","admin-dashboard.html"],["Admissions & Sales","admissions-dashboard.html"]);
+if(staff.role==="sales")a.push(["Admissions & Sales","admissions-dashboard.html"]);
+if(["teacher","admin","super_admin"].includes(staff.role))a.push(["Teacher Workspace","teacher-dashboard.html"]);
+links.innerHTML=a.map(x=>`<a class="card" href="${x[1]}"><h2>${x[0]}</h2><p class="muted">Open workspace</p></a>`).join("");return;}
+who.textContent="Student / Parent account";links.innerHTML=`<a class="card" href="student-dashboard.html"><h2>Student Portal</h2></a><a class="card" href="parent-dashboard.html"><h2>Parent Portal</h2></a>`;
+})();
+</script></body></html>

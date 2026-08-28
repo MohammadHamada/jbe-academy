@@ -1,0 +1,39 @@
+JBE ACADEMY — MULTI-TEACHER OWNERSHIP MODEL
+
+Public Website
+  -> Teachers Directory
+      -> Teacher A Public Profile
+      -> Teacher B Public Profile
+      -> Teacher C Public Profile
+
+Teacher identity
+  staff
+    -> teacher_profiles
+       -> teacher_teaching_scopes
+          Education System
+          Curriculum
+          Stage
+          Grade
+          Subject
+       -> teacher_offerings
+          Study Mode
+          Billing Type
+          Teacher Price
+          Duration
+          Capacity
+          Approval Status
+       -> courses
+          -> groups
+             -> sessions
+             -> enrollments
+             -> activities
+
+Rules:
+1. No grade/subject/course is globally "owned" by a teacher.
+2. Each teacher explicitly selects teaching scope.
+3. A teacher can teach the same grade in multiple curricula.
+4. Two teachers can teach the same subject/grade with different prices.
+5. Teacher price is private operational data until Admin approves an offering.
+6. Public profile shows only the selected teacher's approved/public data.
+7. Historic data is archived, never reassigned when a teacher changes future scope.
+8. Mr. Mohammad Jebali's current launch courses are explicitly linked to him before adding future teachers.

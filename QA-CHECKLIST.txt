@@ -1,0 +1,60 @@
+JBE ACADEMY MASTER V2 — QA CHECKLIST
+
+1. Supabase
+[ ] Run jbe_academy_master_v2.sql
+[ ] Confirm Success
+[ ] Confirm academic_stages contains PRIMARY, PREPARATORY, SECONDARY, BACCALAUREATE
+[ ] Confirm EGYPT_NATIONAL_EN contains G4–G10
+[ ] Confirm applications table exists
+[ ] Confirm teacher_profiles and teacher_offerings exist
+[ ] Confirm class_groups, invoices, receipts exist
+
+2. Registration
+[ ] Open /register.html
+[ ] Select National -> Egyptian National Curriculum
+[ ] Select Primary and verify Grades 4–6
+[ ] Select Preparatory and verify Grades 7–9
+[ ] Submit a test application
+[ ] Verify the JBE-APP code appears
+
+3. Admissions
+[ ] Open /admissions-dashboard.html using Admin
+[ ] Confirm the application appears
+[ ] Click Approve & Create Student
+[ ] Confirm a JBE student code is generated
+[ ] Confirm application becomes converted
+
+4. Existing student management
+[ ] /admin-dashboard.html still loads
+[ ] Student Manage still loads
+[ ] Payment verification V1.8 still works
+
+5. Multi-role
+[ ] Teacher account sees Teacher Workspace
+[ ] Sales account sees Admissions only
+[ ] Parent account sees only linked children
+[ ] Student account sees Student Portal
+[ ] Admin sees Admin + Admissions + Teacher workspace
+
+6. Billing
+[ ] Fixed-session course remains fixed even if actual session runs longer
+[ ] Hourly course calculates actual minutes / 60 * hourly rate
+[ ] Monthly/Term/Package sessions create no per-session charge
+[ ] Verified payment creates receipt record automatically
+
+7. Security
+[ ] No service_role key exists in any JS file
+[ ] Only the Supabase publishable/anon key is exposed
+[ ] RLS remains enabled
+
+
+8. Teacher Ownership V2.1
+[ ] teacher_profiles contains Mr. Mohammad Jebali / slug mr-mohammad-jebali
+[ ] Original Grade 9 Math course teacher_id = Mr. Mohammad Jebali
+[ ] Original Grade 10 Math course teacher_id = Mr. Mohammad Jebali
+[ ] Grade 11 Math / Business courses teacher_id = Mr. Mohammad Jebali
+[ ] Economics Grade 12 draft remains linked to Mr. Mohammad but remains non-public
+[ ] /teacher-settings.html loads for Mr. Mohammad
+[ ] Adding a teaching scope affects only his profile
+[ ] A second teacher can be created without inheriting Mr. Mohammad's scopes/courses/prices
+[ ] /teacher-profile.html?slug=mr-mohammad-jebali shows only his own public data
