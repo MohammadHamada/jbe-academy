@@ -1,8 +1,22 @@
 const JBE = (() => {
 
+  const cfg = window.JBE_CONFIG;
+
+  if (
+    !cfg ||
+    !cfg.SUPABASE_URL ||
+    !cfg.SUPABASE_ANON_KEY ||
+    cfg.SUPABASE_URL.includes("YOUR_PROJECT_REF") ||
+    cfg.SUPABASE_ANON_KEY.includes("YOUR_PUBLISHABLE")
+  ) {
+    throw new Error(
+      "JBE Academy Supabase configuration is missing or still contains placeholders."
+    );
+  }
+
   const client = supabase.createClient(
-    window.JBE_CONFIG.SUPABASE_URL,
-    window.JBE_CONFIG.SUPABASE_ANON_KEY
+    cfg.SUPABASE_URL,
+    cfg.SUPABASE_ANON_KEY
   );
 
   async function session() {

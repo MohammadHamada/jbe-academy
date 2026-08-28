@@ -1,0 +1,25 @@
+JBE ACADEMY V2.3.1 — AUTH HOTFIX
+
+Root cause found:
+The V2.3 package accidentally contained placeholder values in supabase-config.js:
+- https://YOUR_PROJECT_REF.supabase.co
+- YOUR_PUBLISHABLE_OR_ANON_KEY
+
+This causes the browser error:
+"Failed to fetch"
+
+V2.3.1 fixes:
+1. Restores the correct production Supabase URL.
+2. Restores the browser-safe publishable key.
+3. Adds config validation so placeholders fail with a clear message.
+4. Adds cache-busting query strings to critical auth scripts.
+
+IMPORTANT LOGIN NOTE
+The existing Auth user previously used for the demo/admin setup was:
+mr.mhammadahmad2@outlook.com
+
+The screenshot showing:
+mr.mhammadahmad2@gmail.com
+is a different email address.
+
+After deploying V2.3.1, use the exact email that exists in Supabase Authentication -> Users.

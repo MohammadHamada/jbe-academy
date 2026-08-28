@@ -8,5 +8,5 @@
 <section class="panel"><h2>Reports</h2><p>Skills • Goals • Parent reports</p></section>
 <section class="panel wide"><h2>Design principle</h2><p class="muted">Financial administration, other teachers' data and platform-wide settings are intentionally hidden from the teacher workspace.</p></section>
 </div><p id="msg"></p></main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="portal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js?v=231"></script><script src="portal.js?v=231"></script>
 <script>JBE.staff().then(s=>{if(!s||!["teacher","admin","super_admin"].includes(s.role)){document.getElementById("msg").textContent="Not authorized.";return;}document.getElementById("hello").textContent=`Welcome, ${s.full_name}`;});</script></body></html>
