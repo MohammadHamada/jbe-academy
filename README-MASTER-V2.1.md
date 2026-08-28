@@ -1,4 +1,4 @@
-# JBE Academy — Master Platform V2.1
+# JBE Academy — Master Platform V2.1 FIXED
 
 This package consolidates the decisions made so far into one expandable architecture.
 
@@ -68,3 +68,7 @@ Cloudflare Pages should redeploy automatically after the commit.
 - Public teacher pages read only that teacher's scopes and approved offerings.
 - Archiving a teaching scope does not delete historic courses or student records.
 - Adding National Grades 4–6 (Primary) and 7–9 (Preparatory) to the platform does not automatically assign them to every teacher.
+
+
+## Fix included
+- Corrected PostgreSQL composite-row assignment in `admin_finalize_session_billing()` that caused `record variable cannot be part of multiple-item INTO list`.

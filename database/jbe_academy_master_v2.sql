@@ -639,10 +639,15 @@ begin
 
   v_minutes := ceil(extract(epoch from (p_actual_end-p_actual_start))/60.0);
 
-  select co.*,cs.group_id
-  into v_course,v_group_id
+  select co.*
+  into v_course
   from public.class_sessions cs
   join public.courses co on co.id=cs.course_id
+  where cs.id=p_session_id;
+
+  select cs.group_id
+  into v_group_id
+  from public.class_sessions cs
   where cs.id=p_session_id;
 
   if v_course.id is null then raise exception 'session not found'; end if;
