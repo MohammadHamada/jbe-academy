@@ -45,22 +45,48 @@ function nextPageAllowed(next, role) {
 
   const adminPages = [
     "portal.html",
+    "owner-dashboard.html",
     "admin-dashboard.html",
     "student-manage.html",
+    "student-affairs.html",
+    "finance-dashboard.html",
+    "groups.html",
     "teacher-dashboard.html",
+    "teacher-workspace.html",
+    "teacher-session.html",
     "teacher-settings.html",
-    "admissions-dashboard.html"
+    "admissions-dashboard.html",
+    "sales-crm.html",
+    "staff-management.html",
+    "audit-log.html",
+    "teacher-approvals.html"
   ];
 
   const teacherPages = [
     "portal.html",
     "teacher-dashboard.html",
+    "teacher-workspace.html",
+    "teacher-session.html",
     "teacher-settings.html"
   ];
 
   const salesPages = [
     "portal.html",
-    "admissions-dashboard.html"
+    "admissions-dashboard.html",
+    "sales-crm.html"
+  ];
+
+  const studentAffairsPages = [
+    "portal.html",
+    "student-affairs.html",
+    "student-manage.html",
+    "groups.html",
+    "sales-crm.html"
+  ];
+
+  const financePages = [
+    "portal.html",
+    "finance-dashboard.html"
   ];
 
   if (["super_admin", "admin"].includes(role)) {
@@ -73,6 +99,14 @@ function nextPageAllowed(next, role) {
 
   if (role === "sales") {
     return salesPages.includes(next);
+  }
+
+  if (role === "student_affairs") {
+    return studentAffairsPages.includes(next);
+  }
+
+  if (role === "finance") {
+    return financePages.includes(next);
   }
 
   if (role === "student") {

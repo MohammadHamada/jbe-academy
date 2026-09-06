@@ -26,6 +26,12 @@ async function requireStaff() {
     return null;
   }
 
+  const { data: allowed, error: permError } = await client.rpc("has_permission", { p_permission: "admin.dashboard" });
+  if (permError || !allowed) {
+    $("adminError").textContent = "This account is not authorized for the Admin Dashboard.";
+    return null;
+  }
+
   $("staffName").textContent = `${staff.full_name} • ${staff.role}`;
   return staff;
 }

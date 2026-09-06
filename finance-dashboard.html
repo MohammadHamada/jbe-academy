@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Dashboard | JBE Academy</title>
+<link rel="stylesheet" href="ops.css?v=250"><link rel="stylesheet" href="bilingual.css?v=250">
+</head>
+<body>
+<header class="ops-top">
+  <a class="ops-brand" href="index.html">JBE <b>Academy</b></a>
+  <div class="ops-actions">
+    <a class="ops-btn light" href="portal.html">Portal</a>
+    <button class="jbe-language-switch" data-lang-switch type="button">English</button>
+    <button class="ops-btn light" onclick="JBE.logout()">Sign out</button>
+  </div>
+</header>
+<main class="ops-shell">
+<section class="ops-hero"><span class="ops-eyebrow">FINANCE</span><h1>Finance Dashboard</h1><p>Review payment claims, invoices and verified payments without exposing academic tools.</p></section>
+
+<section class="ops-grid">
+ <article class="ops-card ops-stat ops-kpi-warn"><span>Pending payment claims</span><strong id="fClaims">—</strong></article>
+ <article class="ops-card ops-stat"><span>Due invoices</span><strong id="fDue">—</strong></article>
+ <article class="ops-card ops-stat"><span>Outstanding amount</span><strong id="fOutstanding">—</strong></article>
+ <article class="ops-card ops-stat"><span>Verified payments</span><strong id="fVerified">—</strong></article>
+</section>
+<section class="ops-panel"><h2>Pending Payment Claims</h2><div id="claimList" class="ops-list"></div></section>
+
+<p id="pageMsg"></p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="i18n.js?v=250"></script><script src="supabase-config.js?v=250"></script><script src="portal.js?v=250"></script>
+<script src="finance-dashboard.js?v=250"></script>
+</body></html>

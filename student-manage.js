@@ -17,13 +17,11 @@ async function requireStaff() {
     return false;
   }
 
-  const { data, error } = await client
-    .from("staff")
-    .select("id")
-    .eq("auth_user_id", session.user.id)
-    .single();
+  const { data: allowed, error } = await client.rpc("has_permission", {
+    p_permission: "students.view"
+  });
 
-  if (error || !data) {
+  if (error || !allowed) {
     $("pageError").textContent = "Not authorized.";
     return false;
   }

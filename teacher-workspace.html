@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teacher Workspace | JBE Academy</title>
+<link rel="stylesheet" href="ops.css?v=250"><link rel="stylesheet" href="bilingual.css?v=250">
+</head>
+<body>
+<header class="ops-top">
+  <a class="ops-brand" href="index.html">JBE <b>Academy</b></a>
+  <div class="ops-actions">
+    <a class="ops-btn light" href="portal.html">Portal</a>
+    <button class="jbe-language-switch" data-lang-switch type="button">English</button>
+    <button class="ops-btn light" onclick="JBE.logout()">Sign out</button>
+  </div>
+</header>
+<main class="ops-shell">
+<section class="ops-hero"><span class="ops-eyebrow">TEACHER</span><h1>Teacher Workspace</h1><p>Focus on today's teaching work: sessions, attendance, homework and completion.</p></section>
+
+<section class="ops-panel"><div class="ops-panel-head"><div><span class="ops-eyebrow">TODAY</span><h2>Today's Sessions</h2></div><input id="dayPicker" type="date" style="max-width:190px"></div><div id="sessionList" class="ops-list"></div></section>
+<section class="ops-grid three">
+ <a class="ops-card" href="teacher-settings.html"><h2>Teaching Profile</h2><p class="ops-muted">Systems, grades, subjects and offerings.</p></a>
+ <a class="ops-card" href="teachers.html"><h2>Public Profile</h2><p class="ops-muted">See the teacher-facing public experience.</p></a>
+ <a class="ops-card" href="portal.html"><h2>Portal</h2><p class="ops-muted">Return to your role workspace.</p></a>
+</section>
+
+<p id="pageMsg"></p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="i18n.js?v=250"></script><script src="supabase-config.js?v=250"></script><script src="portal.js?v=250"></script>
+<script src="teacher-workspace.js?v=250"></script>
+</body></html>

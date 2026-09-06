@@ -737,3 +737,9 @@ footer p{
     align-items:center;
   }
 }
+
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.value-card{display:block;background:#fff;border:1px solid rgba(11,39,72,.12);border-radius:18px;padding:20px;box-shadow:0 10px 25px rgba(11,39,72,.05)}
+.value-card strong{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#0b2748;color:#fff}
+.value-card h3{margin:12px 0 6px}.value-card p{margin:0;color:#6b7280;line-height:1.6}
+@media(max-width:760px){.value-grid{grid-template-columns:1fr}}

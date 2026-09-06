@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Staff Management | JBE Academy</title>
+<link rel="stylesheet" href="ops.css?v=250"><link rel="stylesheet" href="bilingual.css?v=250">
+</head>
+<body>
+<header class="ops-top">
+  <a class="ops-brand" href="index.html">JBE <b>Academy</b></a>
+  <div class="ops-actions">
+    <a class="ops-btn light" href="portal.html">Portal</a>
+    <button class="jbe-language-switch" data-lang-switch type="button">English</button>
+    <button class="ops-btn light" onclick="JBE.logout()">Sign out</button>
+  </div>
+</header>
+<main class="ops-shell">
+<section class="ops-hero"><span class="ops-eyebrow">OWNER / ACCESS</span><h1>Staff Management</h1><p>Team & Access — invite staff, assign roles, suspend access and send secure password resets.</p></section>
+
+<section class="ops-panel">
+ <div class="ops-panel-head"><div><span class="ops-eyebrow">TEAM</span><h2>Staff Management</h2><p class="ops-muted">The owner account cannot be suspended or downgraded.</p></div><button id="openInvite" class="ops-btn gold">Invite Team Member</button></div>
+ <div class="ops-table"><table><thead><tr><th>Full name</th><th>Email</th><th>Primary Role</th><th>Roles</th><th>Status</th><th>Last Login</th><th></th></tr></thead><tbody id="staffRows"></tbody></table></div>
+</section>
+<section class="ops-panel">
+ <span class="ops-eyebrow">INVITES</span><h2>Pending Invites</h2><div id="inviteRows" class="ops-list"></div>
+</section>
+<section class="ops-panel"><p class="ops-muted">Password resets are sent securely. Passwords are never visible to JBE staff.</p></section>
+
+<div id="inviteModal" class="ops-modal hidden"><div class="ops-modal-card">
+ <div class="ops-modal-head"><h2>Invite Team Member</h2><button id="closeInvite" class="ops-btn light">×</button></div>
+ <form id="inviteForm">
+  <div class="ops-form-grid"><label>Full name<input id="inviteName" required></label><label>Email<input id="inviteEmail" type="email" required></label></div>
+  <label>Primary role<select id="invitePrimary"></select></label>
+  <label>Roles</label><div id="inviteRoles" class="ops-checkboxes"></div>
+  <button class="ops-btn gold" type="submit">Create Invite Link</button><p id="inviteMsg"></p>
+ </form>
+ <div id="inviteLinkBox" class="hidden"><label>Invite link<input id="inviteLink" readonly></label><button id="copyInvite" class="ops-btn">Copy Link</button></div>
+</div></div>
+
+<div id="rolesModal" class="ops-modal hidden"><div class="ops-modal-card">
+ <div class="ops-modal-head"><h2>Edit Roles</h2><button id="closeRoles" class="ops-btn light">×</button></div>
+ <input id="rolesStaffId" type="hidden">
+ <label>Primary role<select id="rolesPrimary"></select></label>
+ <label>Roles</label><div id="rolesChecks" class="ops-checkboxes"></div>
+ <button id="saveRoles" class="ops-btn gold">Save</button><p id="rolesMsg"></p>
+</div></div>
+
+<p id="pageMsg"></p>
+
+<div id="permModal" class="ops-modal hidden"><div class="ops-modal-card">
+ <div class="ops-modal-head"><h2>Permissions</h2><button id="closePerm" class="ops-btn light">×</button></div>
+ <input id="permStaffId" type="hidden"><div id="permList" class="ops-list"></div><p id="permMsg"></p>
+</div></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="i18n.js?v=250"></script><script src="supabase-config.js?v=250"></script><script src="portal.js?v=250"></script>
+<script src="staff-management.js?v=250"></script>
+</body></html>

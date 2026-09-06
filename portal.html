@@ -6,7 +6,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Portal | JBE Academy</title>
 <link href="portal.css" rel="stylesheet"/>
-<link href="bilingual.css?v=241" rel="stylesheet"/></head>
+<link href="bilingual.css?v=250" rel="stylesheet"/></head>
 <body>
 <header class="portal-top">
 <a class="brand" href="index.html">JBE <b>Academy</b></a>
@@ -22,12 +22,11 @@
 <p id="portalMessage"></p>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="i18n.js?v=241"></script><script src="supabase-config.js?v=241"></script>
-<script src="portal.js?v=241"></script>
+<script src="i18n.js?v=250"></script><script src="supabase-config.js?v=250"></script>
+<script src="portal.js?v=250"></script>
 <script>
 (async () => {
   const role = await JBE.resolveRole();
-
   if (!role) return;
 
   const links = document.getElementById("links");
@@ -36,47 +35,74 @@
 
   if (!role.destination) {
     who.textContent = "Account not linked";
-    message.textContent =
-      "Your Auth account is valid but has not yet been linked to a JBE role.";
+    message.textContent = "Your Auth account is valid but has not yet been linked to a JBE role.";
     return;
   }
 
-  who.textContent = `Account type: ${role.role}`;
+  who.textContent = role.is_owner
+    ? "Protected Owner • Mohammad Jebali"
+    : `Account type: ${role.role}`;
 
   let items = [];
 
-  if (["super_admin", "admin"].includes(role.role)) {
+  if (role.is_owner) {
     items = [
-      ["Admin Dashboard", "admin-dashboard.html", "Students, billing and administration"],
-      ["Admissions & Sales", "admissions-dashboard.html", "Applications and follow-up"],
-      ["Teacher Workspace", "teacher-dashboard.html", "Academic daily work"],
-      ["Teaching Profile", "teacher-settings.html", "Systems, grades, subjects and offerings"]
+      ["Owner Command Center","owner-dashboard.html","Action Required, search and platform control"],
+      ["Team & Access","staff-management.html","Staff invitations, roles and access"],
+      ["Sales CRM","sales-crm.html","Applications and follow-up"],
+      ["Student Affairs","student-affairs.html","Students, guardians and enrollment quality"],
+      ["Finance","finance-dashboard.html","Invoices, payments and receipts"],
+      ["Approvals","teacher-approvals.html","Teacher profiles and public prices"],
+      ["Groups & Scheduling","groups.html","Groups and recurring sessions"],
+      ["Teacher Workspace","teacher-workspace.html","Today's teaching operations"],
+      ["Audit Log","audit-log.html","Operational and security history"]
+    ];
+  } else if (role.role === "admin") {
+    items = [
+      ["Admin Dashboard","admin-dashboard.html","Students and administration"],
+      ["Sales CRM","sales-crm.html","Applications and follow-up"],
+      ["Student Affairs","student-affairs.html","Student administration"],
+      ["Finance","finance-dashboard.html","Payment operations"],
+      ["Approvals","teacher-approvals.html","Teacher profiles and prices"],
+      ["Groups & Scheduling","groups.html","Groups and schedules"],
+      ["Teacher Workspace","teacher-workspace.html","Academic work"]
     ];
   } else if (role.role === "teacher") {
     items = [
-      ["Teacher Workspace", "teacher-dashboard.html", "Sessions, attendance and learning"],
-      ["Teaching Profile", "teacher-settings.html", "Systems, grades, subjects and offerings"]
+      ["Teacher Workspace","teacher-workspace.html","Sessions, attendance and homework"],
+      ["Teaching Profile","teacher-settings.html","Systems, grades, subjects and offerings"]
     ];
   } else if (role.role === "sales") {
+    items = [["Sales CRM","sales-crm.html","Applications and follow-up"]];
+  } else if (role.role === "student_affairs") {
     items = [
-      ["Admissions & Sales", "admissions-dashboard.html", "Applications and follow-up"]
+      ["Student Affairs","student-affairs.html","Students and records"],
+      ["Groups & Scheduling","groups.html","Group assignments and schedules"],
+      ["Sales CRM","sales-crm.html","Approved application conversion"]
     ];
+  } else if (role.role === "finance") {
+    items = [["Finance","finance-dashboard.html","Invoices, claims and payments"]];
+  } else if (role.role === "content") {
+    items = [
+      ["Public Courses","courses.html","Review customer-facing course discovery"],
+      ["Teachers","teachers.html","Review public teacher profiles"]
+    ];
+  } else if (role.role === "support") {
+    items = [["Home","index.html","JBE Academy public website"]];
   } else if (role.role === "student") {
-    items = [
-      ["Student Portal", "student-dashboard.html", "Lessons, progress, goals and reports"]
-    ];
+    items = [["Student Portal","student-dashboard.html","Lessons, progress, goals and reports"]];
   } else if (role.role === "parent") {
-    items = [
-      ["Parent Portal", "parent-dashboard.html", "Progress, attendance, reports and payments"]
-    ];
+    items = [["Parent Portal","parent-dashboard.html","Progress, attendance, reports and payments"]];
   }
 
   links.innerHTML = items.map(item => `
     <a class="card" href="${item[1]}">
-      <h2>${item[0]}</h2>
+      <h2>${JBE_I18N.t(item[0])}</h2>
       <p class="muted">${item[2]}</p>
     </a>
   `).join("");
+
+  JBE_I18N.apply();
 })();
 </script>
 </body>
