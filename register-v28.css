@@ -1,0 +1,2 @@
+
+.reg28-wrap h2{font-size:18px;margin:24px 0 12px}.reg28-path{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.reg28-path label{font-size:13px;font-weight:800}.reg28-path select{width:100%;margin-top:6px;border:1px solid #dce3ec;border-radius:10px;padding:10px;background:#fff}@media(max-width:650px){.reg28-path{grid-template-columns:1fr}}
