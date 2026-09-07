@@ -1,0 +1,51 @@
+JBE Academy V2.5 — Static Engineering Audit
+
+Baseline: V2.4.1 bilingual stable / V2.3.1 auth baseline
+Date: 2026-08-29
+
+Checks completed:
+- JavaScript files syntax-checked with Node: 26
+- HTML pages inspected: 27
+- Inline JavaScript syntax errors: 0
+- Broken local file references: 0
+- Every JS RPC call maps to a function defined in V1.7/V1.8/V2.x SQL: yes
+- Production Supabase URL present: yes
+- Browser service_role secret present: no
+- Supabase placeholder config present: no
+- V2.5 SQL $$ delimiter count balanced: yes
+- V2.5 migration is incremental: yes
+- V2.5 public web package does not need SQL files to run after migration: yes
+
+Security changes:
+- Protected owner account
+- Multi-role staff
+- Permission templates and per-user overrides
+- Staff suspension
+- Invite-based staff onboarding
+- Password reset without viewing passwords
+- Legacy admin/student-management RPCs hardened with permissions
+- Teachers restricted to their own course/session/student context for academic write operations
+- Audit logging for sensitive new operations
+- No service-role key in browser code
+
+New customer UX:
+- Education-first course catalog
+- Course detail page
+- Course-based registration
+- Existing homepage featured courses retained
+
+New internal UX:
+- Owner Action Center + global search
+- Team & Access
+- Sales CRM
+- Student Affairs + group assignment
+- Finance
+- Groups & Scheduling
+- Teacher Today Workspace
+- Teacher Session workflow
+- Teacher approvals
+- Audit log
+
+Important limitation:
+Static validation cannot prove PostgreSQL runtime compatibility against the live project.
+The SQL migration must be run in Supabase and followed by the included read-only preflight before site deployment.

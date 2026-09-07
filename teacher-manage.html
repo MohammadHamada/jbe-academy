@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teacher Management | JBE Academy</title>
+<link rel="stylesheet" href="ops.css?v=260">
+<link rel="stylesheet" href="bilingual.css?v=260">
+<link rel="stylesheet" href="teacher-manage.css?v=260">
+</head>
+<body>
+<header class="ops-top">
+  <a class="ops-brand" href="index.html">JBE <b>Academy</b></a>
+  <div class="ops-actions">
+    <a class="ops-btn light" href="owner-dashboard.html">Owner</a>
+    <a class="ops-btn light" href="teacher-approvals.html">Approvals</a>
+    <button class="jbe-language-switch" data-lang-switch type="button">English</button>
+    <button class="ops-btn light" onclick="JBE.logout()">Sign out</button>
+  </div>
+</header>
+
+<main class="ops-shell">
+<section class="ops-hero">
+  <span class="ops-eyebrow">TEACHERS</span>
+  <h1>Teacher Management</h1>
+  <p>Profile → Teaching Scope → Course Offerings → Approval → Public Profile.</p>
+</section>
+
+<section class="tm-layout">
+  <aside class="ops-panel tm-sidebar">
+    <div class="ops-panel-head">
+      <div><span class="ops-eyebrow">TEAM</span><h2>Teachers</h2></div>
+    </div>
+    <label>Find teacher<input id="teacherSearch" placeholder="Name or email"></label>
+    <div id="teacherList" class="tm-teacher-list"></div>
+  </aside>
+
+  <section class="tm-main">
+    <div id="emptyState" class="ops-panel">
+      <h2>Select a teacher</h2>
+      <p class="ops-muted">Choose a teacher to manage profile, teaching scope, offerings and publication.</p>
+    </div>
+
+    <div id="teacherWorkspace" hidden>
+      <section class="ops-panel tm-summary">
+        <div>
+          <span class="ops-eyebrow">SELECTED TEACHER</span>
+          <h2 id="selectedName">—</h2>
+          <p id="selectedMeta" class="ops-muted">—</p>
+        </div>
+        <div class="ops-actions">
+          <a id="publicPreviewBtn" class="ops-btn light" target="_blank">Public Preview</a>
+          <button id="approvePublishBtn" class="ops-btn gold">Verify & Publish</button>
+          <button id="unpublishBtn" class="ops-btn light">Unpublish</button>
+        </div>
+      </section>
+
+      <nav class="tm-tabs">
+        <button class="active" data-tab="profile">Profile</button>
+        <button data-tab="scope">Teaching Scope</button>
+        <button data-tab="offerings">Courses & Pricing</button>
+        <button data-tab="publication">Publication</button>
+      </nav>
+
+      <section id="tab-profile" class="ops-panel tm-tab">
+        <div class="ops-panel-head"><div><span class="ops-eyebrow">PROFILE</span><h2>Teacher Profile</h2></div></div>
+        <form id="profileForm" class="tm-form-grid">
+          <label>Display name<input id="displayName" required></label>
+          <label>Arabic display name<input id="displayNameAr"></label>
+          <label>Public slug<input id="slug" required placeholder="mr-hamadah"></label>
+          <label>Email<input id="teacherEmail" disabled></label>
+          <label>English headline<input id="headlineEn" placeholder="Science Teacher"></label>
+          <label>Arabic headline<input id="headlineAr" placeholder="معلم علوم"></label>
+          <label>Years of experience<input id="yearsExperience" type="number" min="0" max="80"></label>
+          <label>Country code<input id="countryCode" maxlength="2" placeholder="EG"></label>
+          <label class="tm-full">Photo URL<input id="photoUrl" placeholder="https://..."></label>
+          <label class="tm-full">English bio<textarea id="bioEn"></textarea></label>
+          <label class="tm-full">Arabic bio<textarea id="bioAr"></textarea></label>
+          <div class="tm-full ops-actions"><button class="ops-btn gold" type="submit">Save Profile</button></div>
+        </form>
+      </section>
+
+      <section id="tab-scope" class="ops-panel tm-tab" hidden>
+        <div class="ops-panel-head"><div><span class="ops-eyebrow">ACADEMIC SCOPE</span><h2>What does this teacher teach?</h2></div></div>
+        <form id="scopeForm" class="tm-form-grid">
+          <label>Education System<select id="scopeSystem" required></select></label>
+          <label>Curriculum<select id="scopeCurriculum" required></select></label>
+          <label>Stage<select id="scopeStage"></select></label>
+          <label>Grade<select id="scopeGrade" required></select></label>
+          <label>Subject<select id="scopeSubject" required></select></label>
+          <label class="tm-check"><input id="scopePublic" type="checkbox"> Show this scope publicly</label>
+          <div class="tm-full ops-actions"><button class="ops-btn gold" type="submit">Add Teaching Scope</button></div>
+        </form>
+        <div class="tm-divider"></div>
+        <div id="scopeList" class="ops-list"></div>
+      </section>
+
+      <section id="tab-offerings" class="ops-panel tm-tab" hidden>
+        <div class="ops-panel-head">
+          <div>
+            <span class="ops-eyebrow">COURSES & PRICING</span>
+            <h2>Create an Offering</h2>
+            <p class="ops-muted">An offering is the teacher's teachable product. It stays private until approved.</p>
+          </div>
+        </div>
+        <form id="offeringForm" class="tm-form-grid">
+          <label>Teaching Scope<select id="offeringScope" required></select></label>
+          <label>Study Mode<select id="studyMode"><option value="group">Group</option><option value="private">Private</option><option value="hybrid">Hybrid</option><option value="recorded">Recorded</option></select></label>
+          <label>Billing Type<select id="billingType"><option value="fixed_session">Fixed Session</option><option value="hourly">Hourly</option><option value="monthly">Monthly</option><option value="term">Term</option><option value="package">Package</option></select></label>
+          <label>Teacher Price<input id="teacherPrice" type="number" min="0" step="0.01" required></label>
+          <label>Currency<input id="currency" value="EGP" maxlength="3"></label>
+          <label>Duration (minutes)<input id="duration" type="number" min="1" value="60"></label>
+          <label>Capacity<input id="capacity" type="number" min="1" value="12"></label>
+          <div class="tm-full ops-actions"><button class="ops-btn gold" type="submit">Create & Send for Approval</button></div>
+        </form>
+        <div class="tm-divider"></div>
+        <div id="offeringList" class="ops-list"></div>
+      </section>
+
+      <section id="tab-publication" class="ops-panel tm-tab" hidden>
+        <div class="ops-panel-head"><div><span class="ops-eyebrow">PUBLICATION</span><h2>Publication Checklist</h2></div></div>
+        <div id="publicationChecklist" class="tm-checklist"></div>
+        <div class="tm-preview-card"><h3>Public URL</h3><code id="publicUrl">—</code></div>
+      </section>
+      <p id="pageMsg"></p>
+    </div>
+  </section>
+</section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="i18n.js?v=260"></script>
+<script src="supabase-config.js?v=260"></script>
+<script src="portal.js?v=260"></script>
+<script src="teacher-manage.js?v=260"></script>
+</body>
+</html>
