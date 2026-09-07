@@ -39,16 +39,43 @@ async function loadBase(){
     renderTeacherList();
 
     // Load academic catalog independently.
-    const cRes = await JBE.client.rpc("admin_teacher_manager_catalog");
+    // V2.6.2 fallback: use the already-proven public registration catalog
+    // if the Admin catalog errors or unexpectedly returns empty arrays.
+    let cRes = await JBE.client.rpc("admin_teacher_manager_catalog");
+    let cData = cRes.data;
 
-    if(cRes.error){
-      console.error("Teacher catalog error:", cRes.error);
-      message(`Academic catalog error: ${cRes.error.message}`,"error");
-      // Keep the teacher list usable even when catalog has a problem.
-      return;
+    const catalogLooksEmpty = d =>
+      !d ||
+      !Array.isArray(d.education_systems) || d.education_systems.length===0 ||
+      !Array.isArray(d.curricula) || d.curricula.length===0 ||
+      !Array.isArray(d.grades) || d.grades.length===0 ||
+      !Array.isArray(d.subjects) || d.subjects.length===0;
+
+    if(cRes.error || catalogLooksEmpty(cData)){
+      console.warn("Admin teacher catalog fallback:", cRes.error || cData);
+
+      const fallback = await JBE.client.rpc("public_registration_options");
+
+      if(fallback.error || catalogLooksEmpty(fallback.data)){
+        const errText =
+          cRes.error?.message ||
+          fallback.error?.message ||
+          "Academic catalog returned no Education Systems / Curricula / Grades / Subjects.";
+
+        message(`Academic catalog error: ${errText}`,"error");
+        return;
+      }
+
+      cData = fallback.data;
     }
 
-    catalog = cRes.data || catalog;
+    catalog = {
+      education_systems: cData.education_systems || [],
+      curricula: cData.curricula || [],
+      stages: cData.stages || [],
+      grades: cData.grades || [],
+      subjects: cData.subjects || []
+    };
 
     const requested = new URLSearchParams(location.search).get("teacher");
 
@@ -101,7 +128,17 @@ function option(rows,valueFn,labelFn,blank=false){
 function setupCatalog(){
   $("scopeSystem").innerHTML=option(catalog.education_systems,x=>x.id,x=>langName(x));
   $("scopeSubject").innerHTML=option(catalog.subjects,x=>x.id,x=>langName(x));
-  refreshCurricula(); refreshOfferingScopes();
+
+  if(catalog.education_systems.length && !$("scopeSystem").value){
+    $("scopeSystem").value=catalog.education_systems[0].id;
+  }
+  if(catalog.subjects.length && !$("scopeSubject").value){
+    const science = catalog.subjects.find(x=>(x.code||"").toUpperCase()==="SCIENCE");
+    $("scopeSubject").value=(science||catalog.subjects[0]).id;
+  }
+
+  refreshCurricula();
+  refreshOfferingScopes();
 }
 function refreshCurricula(){
   const system=$("scopeSystem").value;
