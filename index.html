@@ -1,331 +1,194 @@
-<!DOCTYPE html>
-
-<html dir="rtl" lang="ar">
+<!doctype html>
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>JBE Academy | Math &amp; Business Education</title>
-<meta content="JBE Academy — Math, Business Management and future Economics courses for Grades 9–12." name="description"/>
-<link href="style.css" rel="stylesheet"/>
-<link href="bilingual.css?v=250" rel="stylesheet"/></head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JBE Academy | Find the Right Learning Path</title>
+<meta name="description" content="JBE Academy helps students and parents find the right curriculum, subject, teacher and course with clear progress tracking and parent visibility.">
+<link rel="stylesheet" href="experience.css?v=270">
+<link rel="stylesheet" href="bilingual.css?v=270">
+</head>
 <body>
-<header class="site-header">
-<div class="container nav">
-<a aria-label="JBE Academy home" class="brand" href="#home">
-<span class="brand-mark">JBE</span>
-<span class="brand-text">Academy</span>
-</a>
-<nav class="menu">
-<a href="#home">الرئيسية</a>
-<a href="courses.html">الكورسات</a>
-<a href="#about">عن المدرس</a>
-<a href="#youtube">المحتوى المجاني</a>
-<a href="#payment">الدفع</a>
-<a href="#enroll">الحجز</a>
-</nav>
-<div class="nav-actions">
-<a class="btn btn-outline" href="register.html">Register</a>
-<a class="btn btn-outline" href="student-login.html">Portal Login</a>
-<button class="lang-btn jbe-language-switch" data-lang-switch="" id="langBtn" type="button">English</button>
-<a class="btn btn-small" href="#enroll">احجز الآن</a>
-</div>
-</div>
+<header class="xp-header">
+  <div class="xp-container xp-nav">
+    <a class="xp-brand" href="index.html" aria-label="JBE Academy">JBE <span>Academy</span></a>
+    <nav class="xp-menu" aria-label="Main navigation">
+      <a href="#finder">البرامج</a>
+      <a href="#subjects">المواد</a>
+      <a href="#teachers">المعلمون</a>
+      <a href="#experience">للطالب وولي الأمر</a>
+      <a href="join-teacher.html">انضم كمعلم</a>
+    </nav>
+    <div class="xp-nav-actions">
+      <button class="xp-lang jbe-language-switch" data-lang-switch type="button">English</button>
+      <a class="xp-link-btn" href="student-login.html">دخول المنصة</a>
+      <a class="xp-primary small" href="register.html">التسجيل</a>
+    </div>
+    <button class="xp-mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
+  </div>
 </header>
-<main id="home">
-<section class="hero">
-<div class="container hero-grid">
-<div class="hero-copy-wrap">
-<span class="eyebrow">JBE ACADEMY</span>
-<h1>تعلّم. افهم. طبّق. <span>تفوّق.</span></h1>
-<p class="hero-copy">
-          تعليم الرياضيات وإدارة الأعمال بطريقة تعتمد على الفهم الحقيقي،
-          التدريب العملي، والمتابعة المستمرة.
-        </p>
-<div class="hero-actions">
-<a class="btn" href="courses.html">استكشف الكورسات</a>
-<a class="btn btn-outline" href="#enroll">ابدأ التسجيل</a>
-</div>
-<div class="mini-points">
-<span>Math</span>
-<span>Business Management</span>
-<span>Arabic &amp; English</span>
-</div>
-</div>
-<div class="hero-visual">
-<div class="teacher-card">
-<img alt="Mr. Mohammad Jebali" class="teacher-image" onerror="this.style.display='none'; document.querySelector('.teacher-fallback').style.display='grid';" src="teacher.png"/>
-<div class="teacher-fallback">Mr. Jebali</div>
-<div class="teacher-caption" dir="ltr">
-<strong>Mr. Mohammad Jebali</strong>
-<span>Math &amp; Business Management Teacher</span>
-</div>
-</div>
-</div>
-</div>
-<div class="container focus-strip">
-<div><strong>Grade 9</strong><span>Math</span></div>
-<div><strong>Grade 10</strong><span>Math</span></div>
-<div><strong>Grade 11</strong><span>Math</span></div>
-<div><strong>Business</strong><span>Management</span></div>
-<div class="coming"><strong>Grade 12</strong><span>Economics — Soon</span></div>
-</div>
+
+<main>
+<section class="xp-hero">
+  <div class="xp-container xp-hero-grid">
+    <div class="xp-hero-copy">
+      <span class="xp-eyebrow">JBE ACADEMY</span>
+      <h1>المسار المناسب. المعلم المناسب. <em>تعلّم أفضل.</em></h1>
+      <p>منصة تعليمية منظمة تساعد الطالب وولي الأمر على اختيار البرنامج والمادة والمعلم، ثم متابعة التعلم والتقدم بوضوح.</p>
+      <div class="xp-actions">
+        <a class="xp-primary" href="#finder">اعثر على برنامجك</a>
+        <a class="xp-secondary" href="#teachers">استكشف المعلمين</a>
+      </div>
+      <div class="xp-trust-row">
+        <span>✓ معلمون معتمدون</span>
+        <span>✓ متابعة التقدم</span>
+        <span>✓ تقارير لولي الأمر</span>
+      </div>
+    </div>
+    <div class="xp-hero-panel">
+      <div class="xp-hero-panel-top">
+        <span>ابدأ من هنا</span><b>أقل من دقيقة</b>
+      </div>
+      <h2>ماذا تبحث عنه؟</h2>
+      <div class="xp-quick-links">
+        <a href="#finder"><strong>برنامج دراسي</strong><small>النظام ← الصف ← المادة</small></a>
+        <a href="#teachers"><strong>معلم</strong><small>تخصصات وأساليب تدريس واضحة</small></a>
+        <a href="register.html"><strong>مساعدة في الاختيار</strong><small>أرسل احتياجك وسنتابع معك</small></a>
+      </div>
+      <p class="xp-market-note">نبدأ حاليًا بمصر، والبنية جاهزة للتوسع لأسواق ومناهج أخرى حسب الطلب.</p>
+    </div>
+  </div>
 </section>
-<section class="section alt" id="find-program">
-<div class="container">
-<div class="section-head">
-<span class="eyebrow">FIND YOUR PROGRAM</span>
-<h2>اعثر على برنامجك</h2>
-<p>اختر نظام التعليم والصف والمادة، ثم قارن بين المعلمين والكورسات المتاحة.</p>
-</div>
-<div class="value-grid">
-<a class="value-card" href="courses.html"><strong>1</strong><h3>نظام التعليم والصف</h3><p>ابدأ بالمسار الدراسي المناسب للطالب.</p></a>
-<a class="value-card" href="courses.html"><strong>2</strong><h3>المادة</h3><p>شاهد المواد المتاحة لهذا الصف.</p></a>
-<a class="value-card" href="courses.html"><strong>3</strong><h3>المعلم والكورس</h3><p>قارن الخيارات ثم افتح صفحة الكورس وسجّل.</p></a>
-</div>
-<div style="margin-top:18px"><a class="btn" href="courses.html">استعرض البرامج والكورسات</a></div>
-</div>
+
+<section class="xp-section xp-soft" id="finder">
+  <div class="xp-container">
+    <div class="xp-section-head compact">
+      <div><span class="xp-eyebrow">SMART FINDER</span><h2>اعثر على المسار المناسب بدون تعقيد</h2></div>
+      <p>نعرض لك فقط الخيارات المرتبطة باختيارك لتقليل التشتيت.</p>
+    </div>
+
+    <div class="xp-finder">
+      <div class="xp-step"><span>1</span><label>نظام التعليم<select id="homeSystem"><option>جارٍ التحميل...</option></select></label></div>
+      <div class="xp-step"><span>2</span><label>الصف<select id="homeGrade"><option value="">اختر الصف</option></select></label></div>
+      <div class="xp-step"><span>3</span><label>المادة<select id="homeSubject"><option value="">اختر المادة</option></select></label></div>
+      <button id="findProgramBtn" class="xp-primary">عرض الخيارات</button>
+    </div>
+    <div class="xp-track-hint" id="trackHint">
+      <strong>التعليم المصري</strong>
+      <span>يمكن أن يندرج لاحقًا إلى مسار عربي ومسار مدارس اللغات/English Track، مع إبقاء تجربة الاختيار بسيطة.</span>
+    </div>
+    <div id="finderResult" class="xp-result" hidden></div>
+  </div>
 </section>
-<section class="section" id="courses">
-<div class="container">
-<div class="section-head">
-<span class="eyebrow">COURSES</span>
-<h2>الكورسات المميزة والقادمة</h2>
-<p>مسارات محددة وتركيز واضح لبناء تجربة تعليمية قوية ومنظمة.</p>
-</div>
-<div class="course-grid">
-<article class="course-card">
-<div class="course-top">
-<span class="tag">Math</span>
-<span class="grade">G9</span>
-</div>
-<h3>Grade 9 Math</h3>
-<p>الصف الثالث الإعدادي</p>
-<ul>
-<li>شرح مبسط ومنظم</li>
-<li>Problem Solving</li>
-<li>Homework &amp; Revision</li>
-</ul>
-<div class="course-meta">البداية: 2 سبتمبر 2026</div>
-<div class="card-actions">
-<a class="btn btn-card" data-course="Grade 9 Math" href="#enroll">احجز الآن</a>
-<a class="text-link" href="#youtube">شاهد محتوى مجاني</a>
-</div>
-</article>
-<article class="course-card featured">
-<div class="course-top">
-<span class="tag">Math</span>
-<span class="grade">G10</span>
-</div>
-<h3>Grade 10 Math</h3>
-<p>الصف الأول الثانوي</p>
-<ul>
-<li>Concept-based learning</li>
-<li>تمارين وأسئلة منهجية</li>
-<li>متابعة مستمرة</li>
-</ul>
-<div class="course-meta">البداية: 3 سبتمبر 2026</div>
-<div class="card-actions">
-<a class="btn btn-card" data-course="Grade 10 Math" href="#enroll">احجز الآن</a>
-<a class="text-link" href="#youtube">شاهد محتوى مجاني</a>
-</div>
-</article>
-<article class="course-card">
-<div class="course-top">
-<span class="tag">Math</span>
-<span class="grade">G11</span>
-</div>
-<h3>Grade 11 Math</h3>
-<p>رياضيات الصف الثاني الثانوي</p>
-<ul>
-<li>شرح متدرج</li>
-<li>تدريبات متقدمة</li>
-<li>اختبارات ومراجعات</li>
-</ul>
-<div class="course-meta">الموعد يعلن قريبًا</div>
-<div class="card-actions">
-<a class="btn btn-card" data-course="Grade 11 Math" href="#enroll">سجل اهتمامك</a>
-</div>
-</article>
-<article class="course-card">
-<div class="course-top">
-<span class="tag gold">Business</span>
-<span class="grade">BM</span>
-</div>
-<h3>Business Management</h3>
-<p>البكالوريا المصرية — مسار الأعمال</p>
-<ul>
-<li>شرح عربي وإنجليزي</li>
-<li>Case Studies</li>
-<li>فهم • تحليل • تطبيق</li>
-</ul>
-<div class="course-meta">البداية: 1 سبتمبر 2026</div>
-<div class="card-actions">
-<a class="btn btn-card" data-course="Business Management" href="#enroll">احجز الآن</a>
-<a class="text-link" href="#youtube">شاهد محتوى مجاني</a>
-</div>
-</article>
-<article class="course-card disabled">
-<div class="course-top">
-<span class="tag">Coming Soon</span>
-<span class="grade">G12</span>
-</div>
-<h3>Economics — Grade 12</h3>
-<p>سيتم إضافته في مرحلة لاحقة.</p>
-<div class="course-meta">غير متاح هذا العام</div>
-</article>
-</div>
-</div>
+
+<section class="xp-section" id="teachers">
+  <div class="xp-container">
+    <div class="xp-section-head">
+      <div><span class="xp-eyebrow">VERIFIED TEACHERS</span><h2>تعرّف على معلمينا</h2></div>
+      <a class="xp-text-link" href="teachers.html">عرض كل المعلمين ←</a>
+    </div>
+    <div class="xp-teacher-grid" id="homeTeachers">
+      <div class="xp-skeleton"></div><div class="xp-skeleton"></div>
+    </div>
+  </div>
 </section>
-<section class="section alt" id="about">
-<div class="container split">
-<div>
-<span class="eyebrow">ABOUT</span>
-<h2>Mr. Mohammad Jebali</h2>
-<p class="lead">Math &amp; Business Management Teacher</p>
-<p>
-          الهدف هو أن يفهم الطالب الفكرة ويعرف كيف يستخدمها، وليس فقط أن يحفظها للامتحان.
-          تعتمد JBE Academy على الشرح المنظم، التدريب، المتابعة، والتطبيق.
-        </p>
-</div>
-<div class="quote-card">
-<strong>Learn • Understand • Apply • Achieve</strong>
-<p>تعليم واضح، عملي، وقابل للتطبيق.</p>
-</div>
-</div>
+
+<section class="xp-section xp-soft" id="subjects">
+  <div class="xp-container">
+    <div class="xp-section-head compact">
+      <div><span class="xp-eyebrow">SUBJECTS</span><h2>ابدأ من المادة التي تحتاجها</h2></div>
+      <p>المواد تظهر من قاعدة البيانات، وتتوسع تلقائيًا مع إضافة معلمين جدد.</p>
+    </div>
+    <div class="xp-subject-grid" id="homeSubjects"></div>
+  </div>
 </section>
-<section class="section" id="youtube">
-<div class="container">
-<div class="section-head">
-<span class="eyebrow">FREE LEARNING</span>
-<h2>المحتوى المجاني على YouTube</h2>
-<p>مكان مخصص لربط فيديوهات JBE Academy العامة، المراجعات، والـShorts.</p>
-</div>
-<div class="playlist-grid">
-<a class="playlist-card" data-youtube="" href="#">Grade 9 Math</a>
-<a class="playlist-card" data-youtube="" href="#">Grade 10 Math</a>
-<a class="playlist-card" data-youtube="" href="#">Grade 11 Math</a>
-<a class="playlist-card" data-youtube="" href="#">Business Management</a>
-<a class="playlist-card" data-youtube="" href="#">Shorts &amp; Quick Tips</a>
-</div>
-<p class="small-note">
-        سنستبدل الروابط المؤقتة بروابط قناة YouTube والـPlaylists فور إنشائها.
-      </p>
-</div>
+
+<section class="xp-section" id="experience">
+  <div class="xp-container">
+    <div class="xp-section-head compact">
+      <div><span class="xp-eyebrow">MORE THAN A LESSON</span><h2>تجربة أوضح للطالب وولي الأمر</h2></div>
+      <p>نُظهر لكل مستخدم ما يحتاجه فقط، بدون قوائم إدارية أو معلومات زائدة.</p>
+    </div>
+    <div class="xp-audience-tabs">
+      <button class="active" data-audience="student">للطالب</button>
+      <button data-audience="parent">لولي الأمر</button>
+    </div>
+    <div class="xp-experience-card" id="audienceStudent">
+      <div>
+        <span class="xp-eyebrow">STUDENT VIEW</span>
+        <h3>اليوم واضح أمام الطالب</h3>
+        <p>الحصة القادمة، الواجب، الكورسات، التقدم وملاحظات المعلم في مساحة واحدة.</p>
+      </div>
+      <div class="xp-mini-dashboard">
+        <div><small>الحصة القادمة</small><strong>Grade 9 Math</strong><span>Tomorrow • 6:00 PM</span></div>
+        <div><small>الواجب</small><strong>2 Tasks</strong><span>Due this week</span></div>
+        <div><small>التقدم</small><strong>78%</strong><span>Improving</span></div>
+      </div>
+    </div>
+    <div class="xp-experience-card" id="audienceParent" hidden>
+      <div>
+        <span class="xp-eyebrow">PARENT VIEW</span>
+        <h3>المهم فقط، بدون إرهاق بالمعلومات</h3>
+        <p>الحضور، الواجب، التقدم، أحدث تقرير والمدفوعات مع تنبيهات عند الحاجة.</p>
+      </div>
+      <div class="xp-mini-dashboard">
+        <div><small>الحضور</small><strong>94%</strong><span>On track</span></div>
+        <div><small>الواجب</small><strong>88%</strong><span>Good consistency</span></div>
+        <div><small>آخر تقرير</small><strong>Progress ↑</strong><span>Teacher feedback ready</span></div>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="section payment-section" id="payment">
-<div class="container">
-<div class="section-head">
-<span class="eyebrow">PAYMENT</span>
-<h2>الدفع داخل مصر</h2>
-<p>اختر وسيلة الدفع المناسبة، ثم أرسل إثبات التحويل عبر WhatsApp لتأكيد الاشتراك.</p>
-</div>
-<div class="payment-grid">
-<div class="payment-card payment-card-instapay">
-<div class="payment-main">
-<span class="payment-icon">IP</span>
-<div>
-<strong>InstaPay</strong>
-<p>الحساب: <b>mohammadalgebaly@instapay</b></p>
-<p>رقم الهاتف: <b>00201069338883</b></p>
-<a class="pay-now-btn" href="https://ipn.eg/S/mohammadalgebaly/instapay/0QFtEN" rel="noopener" target="_blank">
-                ادفع عبر InstaPay
-              </a>
-</div>
-</div>
-<div class="qr-wrap">
-<img alt="InstaPay QR Code" class="qr-code" src="instapay-qr.png"/>
-<span>امسح الـ QR بالموبايل</span>
-</div>
-</div>
-<div class="payment-card">
-<span class="payment-icon">VC</span>
-<div>
-<strong>Vodafone Cash</strong>
-<p>رقم المحفظة:</p>
-<div class="payment-number">00201069338883</div>
-<a class="proof-btn" href="https://wa.me/201069338883?text=" id="vodafoneProofBtn" rel="noopener" target="_blank">
-              أرسل إثبات الدفع
-            </a>
-</div>
-</div>
-</div>
-<div class="whatsapp-contact-card">
-<div class="whatsapp-contact-text">
-<span class="eyebrow">WHATSAPP</span>
-<h3>التواصل وإرسال إثبات الدفع</h3>
-<p>افتح المحادثة مباشرة مع Mr. Mohammad Jebali أو امسح QR من الهاتف.</p>
-<a class="whatsapp-direct-btn" href="https://wa.me/message/CMZT2FQE754UC1" rel="noopener" target="_blank">
-            افتح WhatsApp
-          </a>
-<div class="payment-number">00201069338883</div>
-</div>
-<div class="qr-wrap">
-<img alt="WhatsApp QR Code" class="whatsapp-qr" src="whatsapp-qr.jpg"/>
-<span>Scan to start a WhatsApp chat</span>
-</div>
-</div>
-<div class="payment-steps">
-<span>1. اختر الكورس</span>
-<span>2. ادفع</span>
-<span>3. أرسل إثبات الدفع</span>
-<span>4. تأكيد الاشتراك</span>
-</div>
-</div>
+
+<section class="xp-section xp-dark">
+  <div class="xp-container">
+    <div class="xp-section-head light compact">
+      <div><span class="xp-eyebrow">WHY JBE</span><h2>اختيار أسهل. متابعة أفضل. تجربة منظمة.</h2></div>
+    </div>
+    <div class="xp-value-grid">
+      <article><b>01</b><h3>اختيار موجه</h3><p>لا نطلب من الزائر التنقل بين عشرات الصفحات ليعرف أين يبدأ.</p></article>
+      <article><b>02</b><h3>معلمون تحت المراجعة</h3><p>الملف العام للمعلم لا يُنشر قبل مراجعة JBE واعتماده.</p></article>
+      <article><b>03</b><h3>متابعة حقيقية</h3><p>حضور وواجبات وتقييمات وتقارير بدل الاكتفاء بحضور الحصة.</p></article>
+      <article><b>04</b><h3>قابلية للتوسع</h3><p>نبدأ بمصر مع تصميم يسمح بإضافة مناهج وأسواق جديدة دون إرباك المستخدم.</p></article>
+    </div>
+  </div>
 </section>
-<section class="section enroll" id="enroll">
-<div class="container enroll-grid">
-<div>
-<span class="eyebrow">ENROLL</span>
-<h2>ابدأ التسجيل</h2>
-<p>املأ البيانات ثم تواصل معنا على WhatsApp لإكمال الحجز وإرسال إثبات الدفع.</p>
-<a class="whatsapp-inline" href="https://wa.me/message/CMZT2FQE754UC1" id="whatsappInline" rel="noopener" target="_blank">
-          تواصل عبر WhatsApp
-        </a>
-</div>
-<form class="enroll-form" id="enrollForm">
-<label>
-          اسم الطالب
-          <input name="studentName" placeholder="الاسم بالكامل" required=""/>
-</label>
-<label>
-          رقم الهاتف
-          <input name="phone" placeholder="01xxxxxxxxx" required=""/>
-</label>
-<label>
-          الصف / الكورس
-          <select id="courseSelect" name="course" required="">
-<option value="">اختر الكورس</option>
-<option>Grade 9 Math</option>
-<option>Grade 10 Math</option>
-<option>Grade 11 Math</option>
-<option>Business Management</option>
-</select>
-</label>
-<label>
-          رقم ولي الأمر
-          <input name="parentPhone" placeholder="اختياري"/>
-</label>
-<button class="btn" type="submit">إرسال طلب التسجيل</button>
-<p class="form-note" id="formNote">للتسجيل الكامل وربط بياناتك بالمنصة مباشرة، استخدم صفحة التسجيل.</p>
-</form>
-<div style="margin-top:16px"><a class="btn btn-primary" href="register.html">Complete Online Registration</a></div>
-</div>
+
+<section class="xp-section">
+  <div class="xp-container xp-teacher-cta">
+    <div>
+      <span class="xp-eyebrow">TEACH WITH JBE</span>
+      <h2>هل أنت معلم وتريد الانضمام إلينا؟</h2>
+      <p>قدّم ملفك المهني بخطوات قصيرة. نراجع الخبرة والتخصص وطريقة التدريس، ثم نتواصل مع المرشحين المناسبين.</p>
+    </div>
+    <a class="xp-primary" href="join-teacher.html">قدّم كمعلم</a>
+  </div>
+</section>
+
+<section class="xp-section xp-final">
+  <div class="xp-container">
+    <h2>ابدأ بخطوة واحدة واضحة</h2>
+    <p>اختر المسار بنفسك، أو أرسل بياناتك وسيساعدك فريق JBE في الوصول إلى الخيار المناسب.</p>
+    <div class="xp-actions center">
+      <a class="xp-primary" href="#finder">اعثر على برنامجك</a>
+      <a class="xp-secondary" href="register.html">أحتاج مساعدة</a>
+    </div>
+  </div>
 </section>
 </main>
-<a aria-label="WhatsApp" class="whatsapp-float" href="https://wa.me/message/CMZT2FQE754UC1" id="whatsappFloat" rel="noopener" target="_blank">
-<span>واتساب</span>
-</a>
-<footer>
-<div class="container footer-grid">
-<div>
-<strong>JBE Academy</strong>
-<p>Math &amp; Business Education</p>
-</div>
-<div>
-<p>© 2026 JBE Academy</p>
-</div>
-</div>
+
+<footer class="xp-footer">
+  <div class="xp-container">
+    <div><a class="xp-brand" href="index.html">JBE <span>Academy</span></a><p>Learning paths built around clarity, progress and the right teacher.</p></div>
+    <div><b>Explore</b><a href="courses.html">Programs</a><a href="teachers.html">Teachers</a><a href="join-teacher.html">Teach with JBE</a></div>
+    <div><b>Account</b><a href="register.html">Register</a><a href="student-login.html">Portal Login</a></div>
+  </div>
 </footer>
-<script src="i18n.js?v=250"></script><script src="script.js?v=250"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="i18n.js?v=270"></script>
+<script src="supabase-config.js?v=270"></script>
+<script src="portal.js?v=270"></script>
+<script src="home-experience.js?v=270"></script>
 </body>
 </html>

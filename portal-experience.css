@@ -1,0 +1,9 @@
+
+/* V2.7 lightweight portal UX layer */
+body.portal-experience{background:#f5f8fc;color:#10243c}
+.portal-experience .portal-header,.portal-experience .portal-top{background:#fff;border-bottom:1px solid #e6ebf1;box-shadow:none}
+.portal-experience .dashboard,.portal-experience .wrap{width:min(1120px,calc(100% - 28px));margin:24px auto 70px}
+.portal-experience .welcome-card,.portal-experience .hero-card{border-radius:22px;background:linear-gradient(135deg,#0d3158,#123e6d);color:#fff;box-shadow:0 16px 40px rgba(13,49,88,.12)}
+.portal-experience .welcome-card .muted,.portal-experience .hero-card p{color:#d7e1eb}
+.portal-experience .stat-card,.portal-experience .panel,.portal-experience .card{border:1px solid #e3e9f0;border-radius:18px;box-shadow:0 8px 26px rgba(20,47,76,.04)}
+.portal-experience .panel h2,.portal-experience .card h2{letter-spacing:-.01em}
