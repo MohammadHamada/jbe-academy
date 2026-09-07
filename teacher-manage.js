@@ -24,19 +24,45 @@ async function ensureAccess(){
 async function loadBase(){
   try{
     await ensureAccess();
-    const [tRes,cRes]=await Promise.all([
-      JBE.client.rpc("admin_teacher_manager_list"),
-      JBE.client.rpc("admin_teacher_manager_catalog")
-    ]);
-    if(tRes.error) throw tRes.error;
-    if(cRes.error) throw cRes.error;
-    teachers=tRes.data||[];
-    catalog=cRes.data||catalog;
+
+    // Load teachers FIRST so a separate catalog problem can never hide the teacher list.
+    const tRes = await JBE.client.rpc("admin_teacher_manager_list");
+
+    if(tRes.error){
+      $("teacherList").innerHTML =
+        `<p class="error">Teacher list error: ${tRes.error.message}</p>`;
+      message(`Teacher list error: ${tRes.error.message}`,"error");
+      return;
+    }
+
+    teachers = Array.isArray(tRes.data) ? tRes.data : [];
     renderTeacherList();
-    const requested=new URLSearchParams(location.search).get("teacher");
-    if(requested && teachers.some(t=>t.teacher_id===requested)) await selectTeacher(requested);
-    else if(teachers.length===1) await selectTeacher(teachers[0].teacher_id);
-  }catch(err){ message(err.message,"error"); }
+
+    // Load academic catalog independently.
+    const cRes = await JBE.client.rpc("admin_teacher_manager_catalog");
+
+    if(cRes.error){
+      console.error("Teacher catalog error:", cRes.error);
+      message(`Academic catalog error: ${cRes.error.message}`,"error");
+      // Keep the teacher list usable even when catalog has a problem.
+      return;
+    }
+
+    catalog = cRes.data || catalog;
+
+    const requested = new URLSearchParams(location.search).get("teacher");
+
+    if(requested && teachers.some(t=>t.teacher_id===requested)){
+      await selectTeacher(requested);
+    }else if(teachers.length===1){
+      await selectTeacher(teachers[0].teacher_id);
+    }
+  }catch(err){
+    console.error("Teacher Management load error:", err);
+    $("teacherList").innerHTML =
+      `<p class="error">Load error: ${err.message}</p>`;
+    message(err.message,"error");
+  }
 }
 function renderTeacherList(){
   const q=$("teacherSearch").value.trim().toLowerCase();
@@ -45,7 +71,7 @@ function renderTeacherList(){
     <button class="tm-teacher ${t.teacher_id===selectedTeacherId?"selected":""}" data-id="${t.teacher_id}">
       <strong>${t.display_name}</strong><span>${t.email||""}</span>
       <small>${t.staff_active?"Active":"Suspended"} • ${t.scope_count||0} scopes • ${t.offering_count||0} offerings${Number(t.pending_offering_count)>0?` • ${t.pending_offering_count} pending`:""}</small>
-    </button>`).join("")||`<p class="ops-muted">No teachers found.</p>`;
+    </button>`).join("")||`<p class="ops-muted">${teachers.length ? "No teachers match this search." : "No teacher records were returned."}</p>`;
   document.querySelectorAll(".tm-teacher").forEach(btn=>btn.onclick=()=>selectTeacher(btn.dataset.id));
   JBE_I18N.apply();
 }
