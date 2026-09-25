@@ -1,1 +1,225 @@
-const $=id=>document.getElementById(id),L=()=>JBE_I18N.getLanguage(),tx=(a,e)=>L()==="ar"?a:e;let C={systems:[],pathways:[],pathway_curricula:[],stages:[],grades:[],grade_subjects:[],subjects:[]},T=[],courses=[],controls=[];const nm=o=>L()==="ar"?(o?.name_ar||o?.name_en||""):(o?.name_en||o?.name_ar||""),gn=g=>L()==="ar"?(g?.local_name_ar||g?.name_ar||g?.name_en||""):(g?.local_name_en||g?.name_en||g?.name_ar||"");function opts(el,rows,ph,fn=nm){el.innerHTML=`<option value="">${ph}</option>`+rows.map(x=>`<option value="${x.id}">${fn(x)}</option>`).join("")}function cids(pid){return C.pathway_curricula.filter(x=>x.pathway_id===pid).map(x=>x.curriculum_id)}function stages(pid){let ids=new Set(C.grades.filter(g=>cids(pid).includes(g.curriculum_id)).map(g=>g.stage_id));return C.stages.filter(s=>ids.has(s.id)).sort((a,b)=>a.sort_order-b.sort_order)}function grades(pid,sid){let seen=new Set();return C.grades.filter(g=>cids(pid).includes(g.curriculum_id)&&g.stage_id===sid).sort((a,b)=>a.sort_order-b.sort_order).filter(g=>{let k=g.code+"|"+gn(g);if(seen.has(k))return false;seen.add(k);return true})}function subjects(pid,g){if(!g)return[];let gids=C.grades.filter(x=>cids(pid).includes(x.curriculum_id)&&x.code===g.code).map(x=>x.id),sids=new Set(C.grade_subjects.filter(m=>gids.includes(m.grade_level_id)).map(m=>m.subject_id));return C.subjects.filter(s=>sids.has(s.id)&&["MATH_AR","MATH_EN"].includes(s.code))}function bind(){opts($("fSystem"),C.systems,tx("اختر","Choose"));$("fSystem").onchange=()=>{opts($("fPathway"),C.pathways.filter(p=>p.education_system_id===$("fSystem").value),tx("اختر","Choose"));$("fPathway").dispatchEvent(new Event("change"))};$("fPathway").onchange=()=>{opts($("fStage"),$("fPathway").value?stages($("fPathway").value):[],tx("اختر","Choose"));$("fStage").dispatchEvent(new Event("change"))};$("fStage").onchange=()=>{opts($("fGrade"),$("fStage").value?grades($("fPathway").value,$("fStage").value):[],tx("اختر","Choose"),gn);$("fGrade").dispatchEvent(new Event("change"))};$("fGrade").onchange=()=>{let g=C.grades.find(x=>x.id===$("fGrade").value);opts($("fSubject"),subjects($("fPathway").value,g),tx("اختر","Choose"))}}function teacherCard(t){let d=L()==="ar"?(t.display_name_ar||t.display_name):(t.display_name||t.display_name_ar),h=L()==="ar"?(t.headline_ar||t.headline_en):(t.headline_en||t.headline_ar),ini=(d||"J").split(" ").map(x=>x[0]).slice(0,2).join("");return `<article class="teacher-card">${t.photo_url?`<img src="${t.photo_url}" alt="${d}">`:`<div class="avatar">${ini}</div>`}<small>✓ ${tx("معلم معتمد","Verified Teacher")}</small><h3>${d}</h3><p>${h||""}</p><a class="btn outline" href="teacher-profile.html?slug=${encodeURIComponent(t.slug)}">${tx("عرض الملف","View Profile")}</a></article>`}function renderTeachers(){$("teacherGrid").innerHTML=T.length?T.map(teacherCard).join(""):`<article class="card"><b>${tx("سيظهر هنا المعلمون الذين يختارهم المسؤول.","Teachers selected by the owner will appear here.")}</b></article>`}$("findMath").onclick=()=>{let pid=$("fPathway").value,g=C.grades.find(x=>x.id===$("fGrade").value),sid=$("fSubject").value;if(!pid||!g||!sid){$("findResult").innerHTML=`<p>${tx("أكمل الاختيارات أولًا.","Complete the selections first.")}</p>`;return}let gids=C.grades.filter(x=>cids(pid).includes(x.curriculum_id)&&x.code===g.code).map(x=>x.id),visible=new Set(controls.map(x=>x.course_id)),rows=courses.filter(c=>visible.has(c.course_id)&&c.subject_id===sid&&gids.includes(c.grade_level_id));$("findResult").innerHTML=rows.length?`<div class="cards three" style="margin-top:16px">${rows.map(c=>`<article class="card"><h3>${L()==="ar"?(c.title_ar||c.title_en):(c.title_en||c.title_ar)}</h3><p>${gn(g)}</p><a class="btn" href="course.html?slug=${encodeURIComponent(c.slug)}">${tx("عرض البرنامج","View Program")}</a></article>`).join("")}</div>`:`<article class="card" style="margin-top:16px"><b>${tx("لا يوجد برنامج منشور لهذا الاختيار الآن.","No published program is available for this selection yet.")}</b><p>${tx("يمكنك إرسال طلب وسنتابع معك.","You can submit a request and we will follow up.")}</p><a class="btn" href="register.html">${tx("أرسل طلبك","Send Request")}</a></article>`};async function boot(){let [a,b,c,d]=await Promise.all([JBE.client.rpc("public_academic_catalog_v28"),JBE.client.rpc("public_featured_teachers_v29"),JBE.client.rpc("public_course_catalog"),JBE.client.rpc("public_program_controls_v29")]);if(!a.error)C=a.data||C;if(!b.error)T=b.data||[];if(!c.error)courses=c.data||[];if(!d.error)controls=d.data||[];bind();renderTeachers();JBE_PAGE_I18N?.apply(document)}window.addEventListener("jbe:languagechange",()=>{bind();renderTeachers();JBE_PAGE_I18N?.apply(document)});boot();
+/* ============================================================
+   JBE Academy - Progressive Smart Finder (V3.0 Base)
+   Handles dynamic cascading dropdowns for Math-First Launch
+============================================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. تحديد عناصر DOM
+    const elSystem = document.getElementById('sf-system');
+    const elPathway = document.getElementById('sf-pathway');
+    const elStage = document.getElementById('sf-stage');
+    const elGrade = document.getElementById('sf-grade');
+    const elSubject = document.getElementById('sf-subject');
+    const elBtn = document.getElementById('sf-btn');
+
+    // التحقق من وجود العناصر لتجنب أخطاء المتصفح
+    if (!elSystem || !elPathway) return;
+
+    // دالة مساعدة لإعادة ضبط وإغلاق القوائم
+    const resetSelect = (el, defaultText) => {
+        el.innerHTML = `<option value="">${defaultText}</option>`;
+        el.disabled = true;
+    };
+
+    // 2. تحميل أنظمة التعليم (عند فتح الصفحة)
+    async function loadEducationSystems() {
+        try {
+            const { data, error } = await supabase
+                .from('education_systems')
+                .select('id, name_ar, name_en')
+                .eq('is_active', true)
+                .order('sort_order', { ascending: true });
+            
+            if (error) throw error;
+
+            if (data) {
+                data.forEach(sys => {
+                    const opt = document.createElement('option');
+                    opt.value = sys.id;
+                    opt.textContent = sys.name_ar; // العرض بالعربية
+                    elSystem.appendChild(opt);
+                });
+            }
+        } catch (err) {
+            console.error('Error loading systems:', err);
+        }
+    }
+
+    // 3. عند اختيار "نظام التعليم" -> تحميل "المسارات"
+    elSystem.addEventListener('change', async (e) => {
+        const systemId = e.target.value;
+        
+        resetSelect(elPathway, 'اختر المسار');
+        resetSelect(elStage, 'اختر المرحلة');
+        resetSelect(elGrade, 'اختر الصف');
+        resetSelect(elSubject, 'اختر لغة Math');
+        elBtn.disabled = true;
+
+        if (!systemId) return;
+
+        try {
+            const { data, error } = await supabase
+                .from('curricula')
+                .select('id, name_ar, name_en')
+                .eq('education_system_id', systemId)
+                .eq('is_active', true)
+                .order('sort_order', { ascending: true });
+
+            if (error) throw error;
+
+            if (data && data.length > 0) {
+                elPathway.disabled = false;
+                data.forEach(curr => {
+                    const opt = document.createElement('option');
+                    opt.value = curr.id;
+                    opt.textContent = curr.name_ar;
+                    elPathway.appendChild(opt);
+                });
+            }
+        } catch (err) {
+            console.error('Error loading pathways:', err);
+        }
+    });
+
+    // 4. عند اختيار "المسار" -> تحميل "المراحل"
+    elPathway.addEventListener('change', async (e) => {
+        const pathwayId = e.target.value;
+
+        resetSelect(elStage, 'اختر المرحلة');
+        resetSelect(elGrade, 'اختر الصف');
+        resetSelect(elSubject, 'اختر لغة Math');
+        elBtn.disabled = true;
+
+        if (!pathwayId) return;
+
+        try {
+            // جلب المراحل النشطة بشكل عام (أو يمكن ربطها بالمسار إذا تطلب الهيكل ذلك)
+            const { data, error } = await supabase
+                .from('academic_stages')
+                .select('id, name_ar')
+                .eq('is_active', true)
+                .order('sort_order', { ascending: true });
+
+            if (error) throw error;
+
+            if (data && data.length > 0) {
+                elStage.disabled = false;
+                data.forEach(stage => {
+                    const opt = document.createElement('option');
+                    opt.value = stage.id;
+                    opt.textContent = stage.name_ar;
+                    elStage.appendChild(opt);
+                });
+            }
+        } catch (err) {
+            console.error('Error loading stages:', err);
+        }
+    });
+
+    // 5. عند اختيار "المرحلة" -> تحميل "الصفوف"
+    elStage.addEventListener('change', async (e) => {
+        const stageId = e.target.value;
+
+        resetSelect(elGrade, 'اختر الصف');
+        resetSelect(elSubject, 'اختر لغة Math');
+        elBtn.disabled = true;
+
+        if (!stageId) return;
+
+        try {
+            const { data, error } = await supabase
+                .from('grade_levels')
+                .select('id, name_ar')
+                .eq('stage_id', stageId)
+                .eq('is_active', true)
+                .order('sort_order', { ascending: true });
+
+            if (error) throw error;
+
+            if (data && data.length > 0) {
+                elGrade.disabled = false;
+                data.forEach(grade => {
+                    const opt = document.createElement('option');
+                    opt.value = grade.id;
+                    opt.textContent = grade.name_ar;
+                    elGrade.appendChild(opt);
+                });
+            }
+        } catch (err) {
+            console.error('Error loading grades:', err);
+        }
+    });
+
+    // 6. عند اختيار "الصف" -> تحميل "لغة Math" (الربط الدقيق بـ MATH_AR و MATH_EN)
+    elGrade.addEventListener('change', async (e) => {
+        const gradeId = e.target.value;
+        const currId = elPathway.value;
+
+        resetSelect(elSubject, 'اختر لغة Math');
+        elBtn.disabled = true;
+
+        if (!gradeId || !currId) return;
+
+        try {
+            // جلب المواد المرتبطة بهذا المسار وهذا الصف وتكون MATH فقط
+            const { data, error } = await supabase
+                .from('curriculum_grade_subjects')
+                .select(`
+                    subject_id,
+                    subjects!inner(id, code, name_ar, name_en)
+                `)
+                .eq('curriculum_id', currId)
+                .eq('grade_level_id', gradeId)
+                .eq('is_active', true)
+                .in('subjects.code', ['MATH_AR', 'MATH_EN']);
+
+            if (error) throw error;
+
+            if (data && data.length > 0) {
+                elSubject.disabled = false;
+                data.forEach(mapping => {
+                    const subj = mapping.subjects;
+                    const opt = document.createElement('option');
+                    opt.value = subj.id;
+                    
+                    // تخصيص النص الظاهر للعميل ليكون واضحاً جداً
+                    if (subj.code === 'MATH_AR') {
+                        opt.textContent = 'الرياضيات (بالعربي)';
+                    } else if (subj.code === 'MATH_EN') {
+                        opt.textContent = 'Math (English)';
+                    } else {
+                        opt.textContent = subj.name_ar;
+                    }
+                    
+                    elSubject.appendChild(opt);
+                });
+            }
+        } catch (err) {
+            console.error('Error loading subjects:', err);
+        }
+    });
+
+    // 7. تفعيل زر البحث عند اكتمال الاختيارات
+    elSubject.addEventListener('change', (e) => {
+        if (e.target.value) {
+            elBtn.disabled = false;
+        } else {
+            elBtn.disabled = true;
+        }
+    });
+
+    // 8. التعامل مع زر "عرض الخيارات"
+    elBtn.addEventListener('click', () => {
+        const subjectId = elSubject.value;
+        const gradeId = elGrade.value;
+        const currId = elPathway.value;
+        
+        if(subjectId && gradeId && currId) {
+            // توجيه المستخدم إلى صفحة الكورسات مع المعاملات المطلوبة
+            window.location.href = `/courses.html?curriculum=${currId}&grade=${gradeId}&subject=${subjectId}`;
+        }
+    });
+
+    // بدء تشغيل المحرك
+    loadEducationSystems();
+});
