@@ -5,89 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JBE Academy | أكاديمية الرياضيات</title>
     
-    <!-- ملفات التصميم -->
+    <!-- ملفات التصميم الأساسية -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="bilingual.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- استدعاء Supabase الأساسي -->
+    <!-- استدعاء قاعدة البيانات -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #F8FAFC; margin: 0; color: #0F172A; }
+        .navbar { background: #1E3A8A; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; color: white; }
+        .navbar a { color: white; text-decoration: none; margin-right: 1.5rem; font-weight: 600; }
+        .navbar .login-btn { background: #F59E0B; padding: 0.5rem 1.5rem; border-radius: 6px; }
+        .hero { padding: 4rem 5%; text-align: center; }
+        .smart-finder { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end; margin-top: 2rem; text-align: right;}
+        .form-group { flex: 1; min-width: 150px; }
+        .form-label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem;}
+        .form-control { width: 100%; padding: 0.75rem; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; }
+        .btn-search { background: #1E3A8A; color: white; border: none; padding: 0.8rem 2rem; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; font-family: inherit;}
+        .btn-search:disabled { background: #94A3B8; cursor: not-allowed; }
+        .footer { background: #0F172A; color: #cbd5e1; text-align: center; padding: 2rem; margin-top: 4rem; }
+    </style>
 </head>
 <body>
 
-    <!-- القائمة العلوية (Navbar) -->
-    <header style="background-color: var(--primary); padding: 1rem 0; box-shadow: var(--shadow-sm);">
-        <div class="container flex-row" style="justify-content: space-between; align-items: center;">
-            <a href="index.html">
-                <h2 style="color: white; margin: 0;">JBE Academy</h2>
-            </a>
-            <nav class="flex-row gap-md only-rtl" style="align-items: center;">
-                <a href="index.html" style="color: white; font-weight: 600;">الرئيسية</a>
-                <a href="courses.html" style="color: white; font-weight: 600;">البرامج</a>
-                <a href="teachers.html" style="color: white; font-weight: 600;">المعلمون</a>
-                <a href="portal-v29.html" class="btn" style="background-color: var(--accent); color: white; margin-right: 1rem;">دخول المنصة</a>
-            </nav>
+    <!-- القائمة العلوية -->
+    <nav class="navbar">
+        <div style="font-size: 1.5rem; font-weight: bold; letter-spacing: 1px;">JBE Academy</div>
+        <div>
+            <a href="index.html">الرئيسية</a>
+            <a href="courses.html">البرامج</a>
+            <a href="teachers.html">المعلمون</a>
+            <a href="portal-v29.html" class="login-btn">دخول المنصة</a>
         </div>
-    </header>
+    </nav>
 
-    <!-- محرك البحث المتدرج (Smart Finder) -->
-    <main style="min-height: 70vh; padding-top: 3rem;">
-        <section class="container">
-            <div class="smart-finder-wrapper">
-                <h2 style="color: var(--primary); margin-bottom: 0.5rem;">الرياضيات بالعربي أو Math بالإنجليزية</h2>
-                <p>باقي المواد محفوظة في المنصة ولكنها غير ظاهرة للعامة في مرحلة الإطلاق.</p>
-                
-                <div class="smart-finder-grid">
-                    <div class="form-group" style="margin-bottom: 0;">
-                        <label class="form-label">نظام التعليم</label>
-                        <select id="sf-system" class="form-control">
-                            <option value="">اختر النظام...</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" style="margin-bottom: 0;">
-                        <label class="form-label">المسار</label>
-                        <select id="sf-pathway" class="form-control" disabled>
-                            <option value="">اختر المسار...</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" style="margin-bottom: 0;">
-                        <label class="form-label">المرحلة</label>
-                        <select id="sf-stage" class="form-control" disabled>
-                            <option value="">اختر المرحلة...</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" style="margin-bottom: 0;">
-                        <label class="form-label">الصف</label>
-                        <select id="sf-grade" class="form-control" disabled>
-                            <option value="">اختر الصف...</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" style="margin-bottom: 0;">
-                        <label class="form-label">لغة Math</label>
-                        <select id="sf-subject" class="form-control" disabled>
-                            <option value="">اختر اللغة...</option>
-                        </select>
-                    </div>
-
-                    <div style="margin-bottom: 0;">
-                        <button id="sf-btn" class="btn btn-primary" style="width: 100%; height: 48px;" disabled>عرض الخيارات</button>
-                    </div>
-                </div>
+    <!-- منطقة البحث (Smart Finder) -->
+    <main class="hero">
+        <h1 style="color: #1E3A8A; margin-bottom: 1rem;">الرياضيات بالعربي أو Math بالإنجليزية</h1>
+        <p style="color: #64748B;">باقي المواد محفوظة في المنصة ولكنها غير ظاهرة للعامة في مرحلة الإطلاق.</p>
+        
+        <div class="smart-finder">
+            <div class="form-group">
+                <label class="form-label">نظام التعليم</label>
+                <select id="sf-system" class="form-control">
+                    <option value="">اختر النظام...</option>
+                </select>
             </div>
-        </section>
+
+            <div class="form-group">
+                <label class="form-label">المسار</label>
+                <select id="sf-pathway" class="form-control" disabled>
+                    <option value="">اختر المسار...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">المرحلة</label>
+                <select id="sf-stage" class="form-control" disabled>
+                    <option value="">اختر المرحلة...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">الصف</label>
+                <select id="sf-grade" class="form-control" disabled>
+                    <option value="">اختر الصف...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">لغة Math</label>
+                <select id="sf-subject" class="form-control" disabled>
+                    <option value="">اختر اللغة...</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="flex: 0.5;">
+                <button id="sf-btn" class="btn-search" disabled>عرض الخيارات</button>
+            </div>
+        </div>
     </main>
 
-    <!-- التذييل (Footer) -->
-    <footer style="background-color: var(--text-main); color: white; padding: 2rem 0; text-align: center;">
-        <div class="container">
-            <p style="margin: 0; color: var(--border-light);">© 2026 JBE Academy - The right Math teacher, clear learning plan.</p>
-        </div>
+    <!-- التذييل -->
+    <footer class="footer">
+        <p>© 2026 JBE Academy - The right Math teacher, clear learning plan.</p>
     </footer>
 
-    <!-- ملفات الجافاسكريبت (ترتيب صارم) -->
+    <!-- ملفات التشغيل -->
     <script src="supabase-config.js"></script>
     <script src="home-v29.js"></script>
 </body>
