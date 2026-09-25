@@ -1,48 +1,74 @@
-<!-- Smart Finder Section for index.html -->
-<section class="container">
-    <div class="smart-finder-wrapper">
-        <h2 style="color: var(--primary); margin-bottom: 0.5rem;">الرياضيات بالعربي أو Math بالإنجليزية</h2>
-        <p>باقي المواد محفوظة في المنصة ولكنها غير ظاهرة للعامة في مرحلة الإطلاق.</p>
-        
-        <div class="smart-finder-grid">
-            <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">نظام التعليم</label>
-                <select id="sf-system" class="form-control">
-                    <option value="">اختر النظام...</option>
-                </select>
-            </div>
+<!DOCTYPE html>
+<!-- قمنا بتحديد اللغة والاتجاه الافتراضي ليعمل ملف bilingual.css بشكل صحيح -->
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBE Academy | أكاديمية الرياضيات</title>
+    
+    <!-- 1. استدعاء ملفات التصميم الجديدة -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bilingual.css">
 
-            <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">المسار</label>
-                <select id="sf-pathway" class="form-control" disabled>
-                    <option value="">اختر المسار...</option>
-                </select>
-            </div>
+    <!-- 2. استدعاء مكتبة Supabase الرسمية (مهم جداً أن تكون في الـ Head) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
 
-            <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">المرحلة</label>
-                <select id="sf-stage" class="form-control" disabled>
-                    <option value="">اختر المرحلة...</option>
-                </select>
-            </div>
+    <!-- الجزء الخاص بالبحث المتدرج (Smart Finder) -->
+    <section class="container" style="margin-top: 50px;">
+        <div class="smart-finder-wrapper">
+            <h2 style="color: var(--primary); margin-bottom: 0.5rem;">الرياضيات بالعربي أو Math بالإنجليزية</h2>
+            <p>باقي المواد محفوظة في المنصة ولكنها غير ظاهرة للعامة في مرحلة الإطلاق.</p>
+            
+            <div class="smart-finder-grid">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">نظام التعليم</label>
+                    <select id="sf-system" class="form-control">
+                        <option value="">اختر النظام...</option>
+                    </select>
+                </div>
 
-            <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">الصف</label>
-                <select id="sf-grade" class="form-control" disabled>
-                    <option value="">اختر الصف...</option>
-                </select>
-            </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">المسار</label>
+                    <select id="sf-pathway" class="form-control" disabled>
+                        <option value="">اختر المسار...</option>
+                    </select>
+                </div>
 
-            <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">لغة Math</label>
-                <select id="sf-subject" class="form-control" disabled>
-                    <option value="">اختر اللغة...</option>
-                </select>
-            </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">المرحلة</label>
+                    <select id="sf-stage" class="form-control" disabled>
+                        <option value="">اختر المرحلة...</option>
+                    </select>
+                </div>
 
-            <div style="margin-bottom: 0;">
-                <button id="sf-btn" class="btn btn-primary" style="width: 100%; height: 48px;" disabled>عرض الخيارات</button>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">الصف</label>
+                    <select id="sf-grade" class="form-control" disabled>
+                        <option value="">اختر الصف...</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">لغة Math</label>
+                    <select id="sf-subject" class="form-control" disabled>
+                        <option value="">اختر اللغة...</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 0;">
+                    <button id="sf-btn" class="btn btn-primary" style="width: 100%; height: 48px;" disabled>عرض الخيارات</button>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- 3. استدعاء ملفات الجافاسكريبت (الترتيب هنا حرج جداً) -->
+    <!-- ملف الإعدادات يجب أن يكون الأول ليقوم بتهيئة المتغير supabase -->
+    <script src="supabase-config.js"></script>
+    <!-- ملف التشغيل الذي يحتوي على كود البحث المتدرج -->
+    <script src="home-v29.js"></script>
+
+</body>
+</html>
