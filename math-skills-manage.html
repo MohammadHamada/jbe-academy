@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBE Academy | إدارة مهارات الرياضيات</title>
+    
+    <!-- ملفات التصميم -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bilingual.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-body); margin: 0; color: var(--text-main); }
+        .navbar { background: var(--primary); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; color: white; box-shadow: var(--shadow-sm);}
+        .navbar a { color: white; text-decoration: none; margin-right: 1.5rem; font-weight: 600; }
+        
+        .admin-header { padding: 2rem 5% 1rem; border-bottom: 1px solid var(--border-light); margin-bottom: 2rem;}
+        
+        .grid-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; padding: 0 5%; margin-bottom: 4rem; align-items: start;}
+        @media (max-width: 900px) { .grid-layout { grid-template-columns: 1fr; } }
+        
+        .table-wrapper { overflow-x: auto; background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);}
+        table { width: 100%; border-collapse: collapse; text-align: right; }
+        th, td { padding: 1rem; border-bottom: 1px solid var(--border-light); }
+        th { background-color: #F1F5F9; font-weight: 600; color: var(--text-muted); }
+        tr:hover { background-color: #F8FAFC; }
+    </style>
+</head>
+<body>
+
+    <!-- القائمة العلوية للإدارة -->
+    <nav class="navbar">
+        <div style="font-size: 1.5rem; font-weight: bold;">JBE Admin Portal</div>
+        <div>
+            <a href="owner-dashboard.html">لوحة التحكم</a>
+            <a href="program-management-v29.html">البرامج</a>
+            <a href="#" style="color: var(--accent);">إطار المهارات</a>
+        </div>
+    </nav>
+
+    <div class="admin-header">
+        <h1 style="color: var(--primary);">إدارة إطار مهارات الرياضيات (Math Skills)</h1>
+        <p>قم بإضافة المهارات التعليمية لربطها بالتقييم التشخيصي وخطط تعلم الطلاب.</p>
+    </div>
+
+    <main class="grid-layout">
+        <!-- نموذج إضافة مهارة جديدة -->
+        <div class="card">
+            <h3 style="margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-light); padding-bottom: 0.5rem;">إضافة مهارة جديدة</h3>
+            <form id="skill-form">
+                
+                <!-- الربط الأكاديمي -->
+                <div class="form-group">
+                    <label class="form-label">المسار (اختياري)</label>
+                    <select id="curriculum_id" class="form-control"><option value="">عام (لكل المسارات)</option></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الصف الدراسي (اختياري)</label>
+                    <select id="grade_level_id" class="form-control"><option value="">عام (لكل الصفوف)</option></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">المادة (Math_AR / Math_EN)</label>
+                    <select id="subject_id" class="form-control"><option value="">اختر المادة...</option></select>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid var(--border-light); margin: 1.5rem 0;">
+
+                <!-- تفاصيل المهارة -->
+                <div class="form-group">
+                    <label class="form-label">كود المهارة (مثال: ALG-01) *</label>
+                    <input type="text" id="skill_code" class="form-control" required>
+                </div>
+                
+                <div style="display: flex; gap: 1rem;">
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">المجال (عربي)</label>
+                        <input type="text" id="domain_ar" class="form-control" placeholder="مثال: الجبر">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">المجال (إنجليزي) *</label>
+                        <input type="text" id="domain_en" class="form-control" required placeholder="Ex: Algebra">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">اسم المهارة (عربي)</label>
+                    <input type="text" id="skill_ar" class="form-control" placeholder="مثال: حل المعادلات الخطية">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">اسم المهارة (إنجليزي) *</label>
+                    <input type="text" id="skill_en" class="form-control" required placeholder="Ex: Solve linear equations">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">الترتيب</label>
+                    <input type="number" id="sort_order" class="form-control" value="100" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">حفظ المهارة</button>
+                <div id="form-msg" style="margin-top: 1rem; text-align: center; font-weight: bold;"></div>
+            </form>
+        </div>
+
+        <!-- جدول عرض المهارات -->
+        <div>
+            <div class="table-wrapper">
+                <table id="skills-table">
+                    <thead>
+                        <tr>
+                            <th>الكود</th>
+                            <th>المجال (Domain)</th>
+                            <th>المهارة (Skill)</th>
+                            <th>الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="skills-tbody">
+                        <tr><td colspan="4" style="text-align: center;">جاري تحميل المهارات...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- ملفات التشغيل -->
+    <script src="supabase-config.js"></script>
+    <script src="math-skills-manage.js"></script>
+</body>
+</html>
