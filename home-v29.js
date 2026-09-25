@@ -5,7 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // التأكد من تهيئة Supabase أولاً
     if (typeof supabase === 'undefined') {
-        console.error("Supabase client is not loaded. Please ensure supabase-config.js is included before this script.");
+        console.error("Supabase client is not loaded. Please ensure supabase-config.js is included.");
         return;
     }
 
@@ -16,14 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const elSubject = document.getElementById('sf-subject');
     const elBtn = document.getElementById('sf-btn');
 
-    if (!elSystem) return; // الخروج إذا لم تكن في الصفحة الرئيسية
+    if (!elSystem) return; 
 
     const resetSelect = (el, defaultText) => {
         el.innerHTML = `<option value="">${defaultText}</option>`;
         el.disabled = true;
     };
 
-    // 1. تحميل أنظمة التعليم
     async function loadSystems() {
         try {
             const { data, error } = await supabase
@@ -43,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) { console.error(err); }
     }
 
-    // 2. تحميل المسارات عند اختيار النظام
     elSystem.addEventListener('change', async (e) => {
         const sysId = e.target.value;
         resetSelect(elPathway, 'اختر المسار...');
@@ -72,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. تحميل المراحل عند اختيار المسار
     elPathway.addEventListener('change', async (e) => {
         const pathId = e.target.value;
         resetSelect(elStage, 'اختر المرحلة...');
@@ -99,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. تحميل الصفوف عند اختيار المرحلة
     elStage.addEventListener('change', async (e) => {
         const stageId = e.target.value;
         resetSelect(elGrade, 'اختر الصف...');
@@ -126,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5. تحميل مادة الرياضيات الصحيحة (العزل الأكاديمي)
     elGrade.addEventListener('change', async (e) => {
         const gradeId = e.target.value;
         const currId = elPathway.value;
@@ -135,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!gradeId || !currId) return;
 
-        // استعلام معقد لجلب المادة المربوطة بالصف والمسار المحدد وتكون نشطة ومن نوع Math
         const { data, error } = await supabase
             .from('curriculum_grade_subjects')
             .select(`
@@ -153,19 +147,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const subj = m.subjects;
                 const opt = document.createElement('option');
                 opt.value = subj.id;
-                // تخصيص النص المعروض لولي الأمر
                 opt.textContent = subj.code === 'MATH_AR' ? 'الرياضيات (بالعربي)' : 'Math (English)';
                 elSubject.appendChild(opt);
             });
         }
     });
 
-    // 6. تفعيل زر البحث
     elSubject.addEventListener('change', (e) => {
         elBtn.disabled = !e.target.value;
     });
 
-    // 7. تنفيذ البحث والتوجيه لصفحة الكورسات
     elBtn.addEventListener('click', () => {
         const subjectId = elSubject.value;
         const gradeId = elGrade.value;
@@ -175,6 +166,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // بدء المحرك
     loadSystems();
 });
