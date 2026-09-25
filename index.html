@@ -1,42 +1,48 @@
-<!doctype html><html lang="ar" dir="rtl"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>JBE Academy | Math Learning</title>
-<meta name="description" content="Math tutoring with structured learning plans, flexible delivery and clear parent progress reporting.">
-<link rel="stylesheet" href="experience-v29.css?v=290"><link rel="stylesheet" href="bilingual.css?v=290"></head><body>
-<header class="v29-header"><div class="v29-container nav"><a class="brand" href="index.html">JBE <b>Academy</b></a>
-<nav><a href="#finder" data-ar="مسارات Math" data-en="Math Pathways">مسارات Math</a><a href="#teachers" data-ar="المعلمون" data-en="Teachers">المعلمون</a><a href="#learning" data-ar="منهجية التعلم" data-en="Learning Method">منهجية التعلم</a><a href="#delivery" data-ar="طرق التدريس" data-en="Learning Modes">طرق التدريس</a></nav>
-<div class="actions"><button class="jbe-language-switch" data-lang-switch type="button">English</button><a class="btn outline" href="portal-v29.html" data-ar="دخول المنصة" data-en="Portal Login">دخول المنصة</a><a class="btn" href="register.html" data-ar="ابدأ الآن" data-en="Get Started">ابدأ الآن</a></div></div></header>
-<main>
-<section class="hero"><div class="v29-container hero-grid"><div><span class="eyebrow">JBE MATH</span>
-<h1 data-ar="المعلم المناسب. خطة واضحة. تقدم يمكن قياسه." data-en="The right Math teacher. A clear plan. Progress you can measure.">المعلم المناسب. خطة واضحة. تقدم يمكن قياسه.</h1>
-<p data-ar="نبدأ بالرياضيات فقط حتى نقدم تجربة أكثر تركيزًا: نحدد مستوى الطالب، نبني خطة تعلم، نتابع الواجبات والمهارات، ونقدم لولي الأمر تقريرًا بسيطًا وواضحًا." data-en="We are starting with Math only so the experience stays focused: assess the student, build a learning plan, track homework and skills, and give parents a simple progress report.">نبدأ بالرياضيات فقط...</p>
-<div class="cta"><a class="btn" href="#finder" data-ar="اختر مسارك" data-en="Find Your Math Path">اختر مسارك</a><a class="btn outline" href="#teachers" data-ar="استكشف المعلمين" data-en="Explore Teachers">استكشف المعلمين</a></div>
-<div class="trust"><span>✓ <i data-ar="Math-first" data-en="Math-first">Math-first</i></span><span>✓ <i data-ar="خطة تعلم ومهارات" data-en="Learning plan & skills">خطة تعلم ومهارات</i></span><span>✓ <i data-ar="تقارير واضحة لولي الأمر" data-en="Clear parent reports">تقارير واضحة لولي الأمر</i></span></div>
-</div><aside class="hero-card"><span class="eyebrow">3 LEARNING MODES</span>
-<div class="mode"><b data-ar="أونلاين" data-en="Online">أونلاين</b><small data-ar="حصة واحدة أو باقة حصص" data-en="Single session or package">حصة واحدة أو باقة حصص</small></div>
-<div class="mode"><b data-ar="حضوري لدى الطالب" data-en="At Student Location">حضوري لدى الطالب</b><small data-ar="داخل نطاق خدمة المعلم" data-en="Within the teacher's service area">داخل نطاق خدمة المعلم</small></div>
-<div class="mode"><b data-ar="حضوري في مكان المعلم" data-en="At Teacher Location">حضوري في مكان المعلم</b><small data-ar="مركز أو مدرسة أو مكان معتمد" data-en="Center, school or approved location">مركز أو مدرسة أو مكان معتمد</small></div></aside></div></section>
+<!-- Smart Finder Section for index.html -->
+<section class="container">
+    <div class="smart-finder-wrapper">
+        <h2 style="color: var(--primary); margin-bottom: 0.5rem;">الرياضيات بالعربي أو Math بالإنجليزية</h2>
+        <p>باقي المواد محفوظة في المنصة ولكنها غير ظاهرة للعامة في مرحلة الإطلاق.</p>
+        
+        <div class="smart-finder-grid">
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">نظام التعليم</label>
+                <select id="sf-system" class="form-control">
+                    <option value="">اختر النظام...</option>
+                </select>
+            </div>
 
-<section id="finder" class="section soft"><div class="v29-container"><div class="section-head"><div><span class="eyebrow">MATH PATHWAYS</span><h2 data-ar="الرياضيات بالعربي أو Math بالإنجليزية" data-en="Arabic Mathematics or English Math">الرياضيات بالعربي أو Math بالإنجليزية</h2></div><p data-ar="باقي المواد محفوظة في المنصة ولكنها غير ظاهرة للعامة في مرحلة الإطلاق." data-en="Other subjects remain in the platform but are hidden from the public launch.">باقي المواد محفوظة...</p></div>
-<div class="finder"><label><span data-ar="نظام التعليم" data-en="Education System">نظام التعليم</span><select id="fSystem"></select></label><label><span data-ar="المسار" data-en="Pathway">المسار</span><select id="fPathway"></select></label><label><span data-ar="المرحلة" data-en="Stage">المرحلة</span><select id="fStage"></select></label><label><span data-ar="الصف" data-en="Grade / Year">الصف</span><select id="fGrade"></select></label><label><span data-ar="لغة Math" data-en="Math Content">لغة Math</span><select id="fSubject"></select></label><button id="findMath" class="btn" data-ar="عرض الخيارات" data-en="Show Options">عرض الخيارات</button></div><div id="findResult"></div></div></section>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">المسار</label>
+                <select id="sf-pathway" class="form-control" disabled>
+                    <option value="">اختر المسار...</option>
+                </select>
+            </div>
 
-<section id="teachers" class="section"><div class="v29-container"><div class="section-head"><div><span class="eyebrow">FEATURED MATH TEACHERS</span><h2 data-ar="المعلمون الذين تختارهم الإدارة للصفحة الرئيسية" data-en="Math teachers selected by the owner for the homepage">المعلمون الذين تختارهم الإدارة للصفحة الرئيسية</h2></div><a href="teachers.html" data-ar="كل المعلمين ←" data-en="All teachers →">كل المعلمين ←</a></div><div id="teacherGrid" class="cards three"></div></div></section>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">المرحلة</label>
+                <select id="sf-stage" class="form-control" disabled>
+                    <option value="">اختر المرحلة...</option>
+                </select>
+            </div>
 
-<section id="learning" class="section dark"><div class="v29-container"><div class="section-head light"><div><span class="eyebrow">LEARNING CYCLE</span><h2 data-ar="الحصة جزء من خطة تعلم" data-en="Every lesson is part of a learning plan">الحصة جزء من خطة تعلم</h2></div></div><div class="cycle">
-<article><b>1</b><h3 data-ar="تشخيص" data-en="Diagnose">تشخيص</h3><p data-ar="تحديد المستوى والفجوات." data-en="Identify level and gaps.">تحديد المستوى والفجوات.</p></article>
-<article><b>2</b><h3 data-ar="خطة" data-en="Plan">خطة</h3><p data-ar="أهداف قصيرة مرتبطة بالمهارات." data-en="Short skill-based goals.">أهداف قصيرة...</p></article>
-<article><b>3</b><h3 data-ar="تدريس" data-en="Teach">تدريس</h3><p data-ar="شرح وتدريب موجه." data-en="Explanation and guided practice.">شرح وتدريب...</p></article>
-<article><b>4</b><h3 data-ar="تدريب" data-en="Practice">تدريب</h3><p data-ar="واجب مرتبط بهدف الحصة." data-en="Homework tied to the lesson goal.">واجب مرتبط...</p></article>
-<article><b>5</b><h3 data-ar="تحقق" data-en="Check">تحقق</h3><p data-ar="تقييم قصير أو Exit Ticket." data-en="Short check or exit ticket.">تقييم قصير...</p></article>
-<article><b>6</b><h3 data-ar="تكييف" data-en="Adapt">تكييف</h3><p data-ar="ننتقل أو نعيد الشرح بناءً على الدليل." data-en="Advance or reteach based on evidence.">ننتقل أو نعيد...</p></article>
-</div></div></section>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">الصف</label>
+                <select id="sf-grade" class="form-control" disabled>
+                    <option value="">اختر الصف...</option>
+                </select>
+            </div>
 
-<section id="delivery" class="section soft"><div class="v29-container"><div class="section-head"><div><span class="eyebrow">FLEXIBLE DELIVERY</span><h2 data-ar="حصة أو باقة، فردي أو مجموعة، في المكان المناسب" data-en="Single or package, private or group, in the right place">حصة أو باقة، فردي أو مجموعة، في المكان المناسب</h2></div></div><div class="cards three">
-<article class="card"><h3>Online</h3><p data-ar="فردي أو مجموعة، حصة واحدة أو باقة." data-en="Private or group, single session or package.">فردي أو مجموعة...</p></article>
-<article class="card"><h3 data-ar="لدى الطالب" data-en="At Student Location">لدى الطالب</h3><p data-ar="العنوان خاص ولا يظهر للعامة." data-en="The address remains private and never public.">العنوان خاص...</p></article>
-<article class="card"><h3 data-ar="مكان المعلم" data-en="Teacher Location">مكان المعلم</h3><p data-ar="مركز، مدرسة أو مكان معتمد." data-en="Center, school or approved location.">مركز، مدرسة...</p></article></div></div></section>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">لغة Math</label>
+                <select id="sf-subject" class="form-control" disabled>
+                    <option value="">اختر اللغة...</option>
+                </select>
+            </div>
 
-<section class="section"><div class="v29-container parent-preview"><div><span class="eyebrow">PARENT REPORT</span><h2 data-ar="تقرير يجيب عن الأسئلة المهمة" data-en="A report that answers the important questions">تقرير يجيب عن الأسئلة المهمة</h2><p data-ar="هل الطالب منتظم؟ هل ينجز الواجب؟ أين يتحسن؟ ما الذي يحتاج دعمًا؟ وما الهدف التالي؟" data-en="Is the student attending? Completing homework? Improving where? What needs support? What is the next goal?">هل الطالب منتظم؟...</p></div><div class="report"><span class="status">● <i data-ar="على المسار" data-en="On Track">على المسار</i></span><div><small data-ar="الحضور" data-en="Attendance">الحضور</small><b>94%</b></div><div><small data-ar="الواجب" data-en="Homework">الواجب</small><b>88%</b></div><div><small data-ar="يتحسن في" data-en="Improving">يتحسن في</small><b>Algebra ↑</b></div><div><small data-ar="الهدف التالي" data-en="Next Goal">الهدف التالي</small><b data-ar="حل المعادلات باستقلالية" data-en="Solve equations independently">حل المعادلات باستقلالية</b></div><em data-ar="معاينة توضيحية" data-en="Illustrative preview">معاينة توضيحية</em></div></div></section>
-<section class="final"><div class="v29-container"><h2 data-ar="ابدأ بالرياضيات. ابنِ تقدمًا يمكن رؤيته." data-en="Start with Math. Build progress you can see.">ابدأ بالرياضيات. ابنِ تقدمًا يمكن رؤيته.</h2><div class="cta"><a class="btn" href="register.html" data-ar="ابدأ التسجيل" data-en="Start Registration">ابدأ التسجيل</a><a class="btn outline" href="portal-v29.html" data-ar="دخول المنصة" data-en="Portal Login">دخول المنصة</a></div></div></section></main>
-<footer><div class="v29-container"><b>JBE Academy</b><span>Math Learning & Tutoring Platform</span></div></footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="i18n.js?v=290"></script><script src="page-i18n.js?v=290"></script><script src="supabase-config.js?v=290"></script><script src="portal.js?v=290"></script><script src="home-v29.js?v=290"></script></body></html>
+            <div style="margin-bottom: 0;">
+                <button id="sf-btn" class="btn btn-primary" style="width: 100%; height: 48px;" disabled>عرض الخيارات</button>
+            </div>
+        </div>
+    </div>
+</section>
