@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBE Academy | التقييم التشخيصي للطالب</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bilingual.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-body); margin: 0; color: var(--text-main); }
+        .navbar { background: var(--primary); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; color: white; box-shadow: var(--shadow-sm);}
+        .navbar a { color: white; text-decoration: none; margin-right: 1.5rem; font-weight: 600; }
+        
+        .header-section { padding: 2rem 5% 1rem; border-bottom: 1px solid var(--border-light); margin-bottom: 2rem; background: white;}
+        .container-box { padding: 0 5%; margin-bottom: 4rem; max-width: 1200px; margin: 0 auto; }
+        
+        .skill-card { background: white; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1rem; box-shadow: var(--shadow-sm); display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;}
+        .skill-info { flex: 2; min-width: 250px;}
+        .skill-level { flex: 1; min-width: 200px;}
+        .skill-note { flex: 2; min-width: 250px;}
+        
+        .level-select { width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-light); font-family: inherit; font-weight: bold;}
+        .level-0 { background: #F1F5F9; color: #64748B; } /* Not Assessed */
+        .level-1 { background: #FDE8E8; color: #9B1C1C; } /* Beginning */
+        .level-2 { background: #FEF3C7; color: #92400E; } /* Developing */
+        .level-3 { background: #E1EFFE; color: #1E429F; } /* Secure */
+        .level-4 { background: #DEF7EC; color: #03543F; } /* Mastered */
+
+        .note-input { width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-light); font-family: inherit;}
+        
+        .sticky-footer { position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 1rem 5%; box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.05); display: flex; justify-content: flex-end; z-index: 100; border-top: 1px solid var(--border-light);}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div style="font-size: 1.5rem; font-weight: bold;">Teacher Workspace</div>
+        <div>
+            <a href="teacher-workspace.html">مساحة العمل</a>
+            <a href="#" style="color: var(--accent);">تقييم المهارات</a>
+        </div>
+    </nav>
+
+    <div class="header-section">
+        <h1 style="color: var(--primary); margin-bottom: 0.5rem;">التقييم التشخيصي (Diagnostic Assessment)</h1>
+        <p>قم بتحديد مستوى الطالب في كل مهارة لبناء خطة التعلم المخصصة (Learning Plan).</p>
+        
+        <!-- حقل مؤقت لاختيار طالب تجريبي لاختبار النظام -->
+        <div style="max-width: 300px; margin-top: 1rem;">
+            <label class="form-label">اختر الطالب (للتجربة):</label>
+            <select id="demo-student-select" class="form-control">
+                <option value="">اختر طالب...</option>
+                <option value="11111111-1111-1111-1111-111111111111">طالب تجريبي 1 (أحمد)</option>
+                <option value="22222222-2222-2222-2222-222222222222">طالب تجريبي 2 (سارة)</option>
+            </select>
+        </div>
+    </div>
+
+    <main class="container-box" style="padding-bottom: 80px;">
+        <div id="skills-container">
+            <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                يرجى اختيار الطالب أولاً لتحميل المهارات...
+            </div>
+        </div>
+    </main>
+
+    <div class="sticky-footer">
+        <button id="save-assessment-btn" class="btn btn-primary" disabled>حفظ التقييم وتحديث الخطة</button>
+    </div>
+
+    <script src="supabase-config.js"></script>
+    <script src="student-diagnostic.js"></script>
+</body>
+</html>
