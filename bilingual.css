@@ -1,11 +1,54 @@
+/* ============================================================
+   JBE Academy - Bilingual Engine & Directional Styling
+   Handles perfect typography for Arabic (RTL) & English (LTR)
+============================================================ */
 
-.jbe-language-switch{
-  appearance:none;border:1px solid rgba(15,39,71,.18);background:#fff;color:#0b2748;
-  border-radius:999px;padding:8px 12px;font:inherit;font-size:12px;font-weight:800;
-  cursor:pointer;white-space:nowrap
+/* --- English (LTR) Settings --- */
+html[dir="ltr"] {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  text-align: left;
 }
-.jbe-language-switch:hover{border-color:#d7a83d}
-.jbe-rtl{direction:rtl}
-.jbe-rtl input,.jbe-rtl textarea,.jbe-rtl select{text-align:start}
-.jbe-rtl table th,.jbe-rtl table td{text-align:start}
-.jbe-rtl .brand,.jbe-rtl .brand-lockup,.jbe-rtl .brand-lockup *,.jbe-rtl .teacher-caption{direction:ltr}
+
+html[dir="ltr"] .dir-margin-start { margin-left: 0.5rem; margin-right: 0; }
+html[dir="ltr"] .dir-margin-end { margin-right: 0.5rem; margin-left: 0; }
+
+/* --- Arabic (RTL) Settings --- */
+html[dir="rtl"] {
+  font-family: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  text-align: right;
+  /* Slightly adjust line-height for Arabic script breathing room */
+  line-height: 1.7; 
+}
+
+/* Make Arabic headers slightly bolder as Arabic fonts need more weight to pop */
+html[dir="rtl"] h1, 
+html[dir="rtl"] h2, 
+html[dir="rtl"] h3 {
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] .dir-margin-start { margin-right: 0.5rem; margin-left: 0; }
+html[dir="rtl"] .dir-margin-end { margin-left: 0.5rem; margin-right: 0; }
+
+/* --- Bidirectional Utilities (Flexbox) --- */
+/* Using logical properties allows us to write one CSS rule that works for both RTL and LTR automatically */
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.gap-sm { gap: 0.5rem; }
+.gap-md { gap: 1rem; }
+.gap-lg { gap: 1.5rem; }
+
+/* Logical margins padding - modern approach */
+.ms-auto { margin-inline-start: auto; }
+.me-auto { margin-inline-end: auto; }
+.ps-3 { padding-inline-start: 1rem; }
+.pe-3 { padding-inline-end: 1rem; }
+
+/* Hide elements based on language */
+html[dir="rtl"] .only-ltr { display: none !important; }
+html[dir="ltr"] .only-rtl { display: none !important; }
