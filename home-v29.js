@@ -1,10 +1,14 @@
 /* ============================================================
-   JBE Academy - Progressive Smart Finder (V3.0 Base)
-   Handles dynamic cascading dropdowns for Math-First Launch
+   JBE Academy V2.9.x - Progressive Smart Finder Logic
 ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. تحديد عناصر DOM
+    // التأكد من تهيئة Supabase أولاً
+    if (typeof supabase === 'undefined') {
+        console.error("Supabase client is not loaded. Please ensure supabase-config.js is included before this script.");
+        return;
+    }
+
     const elSystem = document.getElementById('sf-system');
     const elPathway = document.getElementById('sf-pathway');
     const elStage = document.getElementById('sf-stage');
@@ -12,214 +16,165 @@ document.addEventListener('DOMContentLoaded', () => {
     const elSubject = document.getElementById('sf-subject');
     const elBtn = document.getElementById('sf-btn');
 
-    // التحقق من وجود العناصر لتجنب أخطاء المتصفح
-    if (!elSystem || !elPathway) return;
+    if (!elSystem) return; // الخروج إذا لم تكن في الصفحة الرئيسية
 
-    // دالة مساعدة لإعادة ضبط وإغلاق القوائم
     const resetSelect = (el, defaultText) => {
         el.innerHTML = `<option value="">${defaultText}</option>`;
         el.disabled = true;
     };
 
-    // 2. تحميل أنظمة التعليم (عند فتح الصفحة)
-    async function loadEducationSystems() {
+    // 1. تحميل أنظمة التعليم
+    async function loadSystems() {
         try {
             const { data, error } = await supabase
                 .from('education_systems')
-                .select('id, name_ar, name_en')
+                .select('id, name_ar')
                 .eq('is_active', true)
-                .order('sort_order', { ascending: true });
+                .order('sort_order');
             
-            if (error) throw error;
-
-            if (data) {
+            if (!error && data) {
                 data.forEach(sys => {
                     const opt = document.createElement('option');
                     opt.value = sys.id;
-                    opt.textContent = sys.name_ar; // العرض بالعربية
+                    opt.textContent = sys.name_ar;
                     elSystem.appendChild(opt);
                 });
             }
-        } catch (err) {
-            console.error('Error loading systems:', err);
-        }
+        } catch (err) { console.error(err); }
     }
 
-    // 3. عند اختيار "نظام التعليم" -> تحميل "المسارات"
+    // 2. تحميل المسارات عند اختيار النظام
     elSystem.addEventListener('change', async (e) => {
-        const systemId = e.target.value;
+        const sysId = e.target.value;
+        resetSelect(elPathway, 'اختر المسار...');
+        resetSelect(elStage, 'اختر المرحلة...');
+        resetSelect(elGrade, 'اختر الصف...');
+        resetSelect(elSubject, 'اختر اللغة...');
+        elBtn.disabled = true;
+
+        if (!sysId) return;
+
+        const { data } = await supabase
+            .from('curricula')
+            .select('id, name_ar')
+            .eq('education_system_id', sysId)
+            .eq('is_active', true)
+            .order('sort_order');
         
-        resetSelect(elPathway, 'اختر المسار');
-        resetSelect(elStage, 'اختر المرحلة');
-        resetSelect(elGrade, 'اختر الصف');
-        resetSelect(elSubject, 'اختر لغة Math');
-        elBtn.disabled = true;
-
-        if (!systemId) return;
-
-        try {
-            const { data, error } = await supabase
-                .from('curricula')
-                .select('id, name_ar, name_en')
-                .eq('education_system_id', systemId)
-                .eq('is_active', true)
-                .order('sort_order', { ascending: true });
-
-            if (error) throw error;
-
-            if (data && data.length > 0) {
-                elPathway.disabled = false;
-                data.forEach(curr => {
-                    const opt = document.createElement('option');
-                    opt.value = curr.id;
-                    opt.textContent = curr.name_ar;
-                    elPathway.appendChild(opt);
-                });
-            }
-        } catch (err) {
-            console.error('Error loading pathways:', err);
+        if (data && data.length > 0) {
+            elPathway.disabled = false;
+            data.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = c.name_ar;
+                elPathway.appendChild(opt);
+            });
         }
     });
 
-    // 4. عند اختيار "المسار" -> تحميل "المراحل"
+    // 3. تحميل المراحل عند اختيار المسار
     elPathway.addEventListener('change', async (e) => {
-        const pathwayId = e.target.value;
-
-        resetSelect(elStage, 'اختر المرحلة');
-        resetSelect(elGrade, 'اختر الصف');
-        resetSelect(elSubject, 'اختر لغة Math');
+        const pathId = e.target.value;
+        resetSelect(elStage, 'اختر المرحلة...');
+        resetSelect(elGrade, 'اختر الصف...');
+        resetSelect(elSubject, 'اختر اللغة...');
         elBtn.disabled = true;
 
-        if (!pathwayId) return;
+        if (!pathId) return;
 
-        try {
-            // جلب المراحل النشطة بشكل عام (أو يمكن ربطها بالمسار إذا تطلب الهيكل ذلك)
-            const { data, error } = await supabase
-                .from('academic_stages')
-                .select('id, name_ar')
-                .eq('is_active', true)
-                .order('sort_order', { ascending: true });
-
-            if (error) throw error;
-
-            if (data && data.length > 0) {
-                elStage.disabled = false;
-                data.forEach(stage => {
-                    const opt = document.createElement('option');
-                    opt.value = stage.id;
-                    opt.textContent = stage.name_ar;
-                    elStage.appendChild(opt);
-                });
-            }
-        } catch (err) {
-            console.error('Error loading stages:', err);
+        const { data } = await supabase
+            .from('academic_stages')
+            .select('id, name_ar')
+            .eq('is_active', true)
+            .order('sort_order');
+        
+        if (data && data.length > 0) {
+            elStage.disabled = false;
+            data.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.id;
+                opt.textContent = s.name_ar;
+                elStage.appendChild(opt);
+            });
         }
     });
 
-    // 5. عند اختيار "المرحلة" -> تحميل "الصفوف"
+    // 4. تحميل الصفوف عند اختيار المرحلة
     elStage.addEventListener('change', async (e) => {
         const stageId = e.target.value;
-
-        resetSelect(elGrade, 'اختر الصف');
-        resetSelect(elSubject, 'اختر لغة Math');
+        resetSelect(elGrade, 'اختر الصف...');
+        resetSelect(elSubject, 'اختر اللغة...');
         elBtn.disabled = true;
 
         if (!stageId) return;
 
-        try {
-            const { data, error } = await supabase
-                .from('grade_levels')
-                .select('id, name_ar')
-                .eq('stage_id', stageId)
-                .eq('is_active', true)
-                .order('sort_order', { ascending: true });
-
-            if (error) throw error;
-
-            if (data && data.length > 0) {
-                elGrade.disabled = false;
-                data.forEach(grade => {
-                    const opt = document.createElement('option');
-                    opt.value = grade.id;
-                    opt.textContent = grade.name_ar;
-                    elGrade.appendChild(opt);
-                });
-            }
-        } catch (err) {
-            console.error('Error loading grades:', err);
+        const { data } = await supabase
+            .from('grade_levels')
+            .select('id, name_ar')
+            .eq('stage_id', stageId)
+            .eq('is_active', true)
+            .order('sort_order');
+        
+        if (data && data.length > 0) {
+            elGrade.disabled = false;
+            data.forEach(g => {
+                const opt = document.createElement('option');
+                opt.value = g.id;
+                opt.textContent = g.name_ar;
+                elGrade.appendChild(opt);
+            });
         }
     });
 
-    // 6. عند اختيار "الصف" -> تحميل "لغة Math" (الربط الدقيق بـ MATH_AR و MATH_EN)
+    // 5. تحميل مادة الرياضيات الصحيحة (العزل الأكاديمي)
     elGrade.addEventListener('change', async (e) => {
         const gradeId = e.target.value;
         const currId = elPathway.value;
-
-        resetSelect(elSubject, 'اختر لغة Math');
+        resetSelect(elSubject, 'اختر اللغة...');
         elBtn.disabled = true;
 
         if (!gradeId || !currId) return;
 
-        try {
-            // جلب المواد المرتبطة بهذا المسار وهذا الصف وتكون MATH فقط
-            const { data, error } = await supabase
-                .from('curriculum_grade_subjects')
-                .select(`
-                    subject_id,
-                    subjects!inner(id, code, name_ar, name_en)
-                `)
-                .eq('curriculum_id', currId)
-                .eq('grade_level_id', gradeId)
-                .eq('is_active', true)
-                .in('subjects.code', ['MATH_AR', 'MATH_EN']);
+        // استعلام معقد لجلب المادة المربوطة بالصف والمسار المحدد وتكون نشطة ومن نوع Math
+        const { data, error } = await supabase
+            .from('curriculum_grade_subjects')
+            .select(`
+                subject_id,
+                subjects!inner(id, code)
+            `)
+            .eq('curriculum_id', currId)
+            .eq('grade_level_id', gradeId)
+            .eq('is_active', true)
+            .in('subjects.code', ['MATH_AR', 'MATH_EN']);
 
-            if (error) throw error;
-
-            if (data && data.length > 0) {
-                elSubject.disabled = false;
-                data.forEach(mapping => {
-                    const subj = mapping.subjects;
-                    const opt = document.createElement('option');
-                    opt.value = subj.id;
-                    
-                    // تخصيص النص الظاهر للعميل ليكون واضحاً جداً
-                    if (subj.code === 'MATH_AR') {
-                        opt.textContent = 'الرياضيات (بالعربي)';
-                    } else if (subj.code === 'MATH_EN') {
-                        opt.textContent = 'Math (English)';
-                    } else {
-                        opt.textContent = subj.name_ar;
-                    }
-                    
-                    elSubject.appendChild(opt);
-                });
-            }
-        } catch (err) {
-            console.error('Error loading subjects:', err);
+        if (!error && data && data.length > 0) {
+            elSubject.disabled = false;
+            data.forEach(m => {
+                const subj = m.subjects;
+                const opt = document.createElement('option');
+                opt.value = subj.id;
+                // تخصيص النص المعروض لولي الأمر
+                opt.textContent = subj.code === 'MATH_AR' ? 'الرياضيات (بالعربي)' : 'Math (English)';
+                elSubject.appendChild(opt);
+            });
         }
     });
 
-    // 7. تفعيل زر البحث عند اكتمال الاختيارات
+    // 6. تفعيل زر البحث
     elSubject.addEventListener('change', (e) => {
-        if (e.target.value) {
-            elBtn.disabled = false;
-        } else {
-            elBtn.disabled = true;
-        }
+        elBtn.disabled = !e.target.value;
     });
 
-    // 8. التعامل مع زر "عرض الخيارات"
+    // 7. تنفيذ البحث والتوجيه لصفحة الكورسات
     elBtn.addEventListener('click', () => {
         const subjectId = elSubject.value;
         const gradeId = elGrade.value;
         const currId = elPathway.value;
-        
         if(subjectId && gradeId && currId) {
-            // توجيه المستخدم إلى صفحة الكورسات مع المعاملات المطلوبة
             window.location.href = `/courses.html?curriculum=${currId}&grade=${gradeId}&subject=${subjectId}`;
         }
     });
 
-    // بدء تشغيل المحرك
-    loadEducationSystems();
+    // بدء المحرك
+    loadSystems();
 });
